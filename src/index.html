@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/paghinas-logo-3.png">
+    <title>Paghinas - Páginas Web Que Traen Clientes a Tu Puerta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: inter;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #f5f5f7;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #20225c;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            margin-left: 2rem;
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #20225c;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.5rem;
+            background: #20225c;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: #1a4d7a;
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            column-gap: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-links a:hover {
+            color: #20225c;
+        }
+
+        .mobile-menu-cta {
+            margin-top: 2rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            background: #f5f5f7;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(32, 34, 92, 0.1);
+            color: #20225c;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge-mobile {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(32, 34, 92, 0.1);
+            color: #20225c;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .ferreteria-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(32, 34, 92, 0.1);
+            color: #20225c;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .hero h1 .highlight {
+            color: #20225c;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: #666;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #20225c;
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1a4d7a;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-1 {
+            top: 0;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            top: 50%;
+            right: 0;
+            animation-delay: 1s;
+        }
+
+        .card-3 {
+            bottom: 0;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .main-phone {
+            width: 280px;
+            height: 560px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 12px solid #1a1a1a;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: #1a1a1a;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .phone-content {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .phone-icon {
+            width: 60px;
+            height: 60px;
+            background: #20225c;
+            border-radius: 15px;
+            margin: 0 auto 1.5rem;
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+        }
+
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #f5f5f7;
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: #20225c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .portfolio {
+            background: #f5f5f7;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            background: #20225c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+            font-size: 1.3rem;
+        }
+
+        .portfolio-info p {
+            color: #666;
+        }
+
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: #f5f5f7;
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1a1a1a;
+        }
+
+        .testimonial-business {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .pricing {
+            background: #f5f5f7;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.featured {
+            background: #20225c;
+            color: white;
+            border-color: #20225c;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card.featured p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: #20225c;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: white;
+        }
+
+        .contact {
+            background: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background: #f5f5f7;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #20225c;
+            background: white;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            padding: 1rem;
+            background: #20225c;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #1a4d7a;
+            transform: translateY(-2px);
+        }
+
+        .hero-secondary-mobile {
+            display: none;
+            gap: 2rem;
+        }
+
+        .hero-secondary-mobile-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40%;
+        }
+
+        .title-mobile {
+            display: none;
+        }
+
+        .title-desktop {
+            display: block;
+        }
+
+        footer {
+            background: white;
+            color: #666;
+            text-align: center;
+            padding: 0.8rem 5%;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-badge {
+                display: none;
+            }
+
+            .hero-secondary-mobile {
+                display: flex;
+            }
+
+            .hero-secondary {
+                display: none;
+            }
+        }
+
+        @media (max-width: 817px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-secondary-mobile {
+                display: block;
+            }
+
+            .hero-secondary-mobile-button {
+                width: 100%;
+            }
+
+            .hero p {
+                max-width: 600px;
+            }
+
+            .hero-visual {
+                margin-top: 2.5rem;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+            .ferreteria-badge {
+                display: none;
+            }
+
+            .title-mobile {
+                display: block;
+            }
+
+            .title-desktop {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <img src="images/paghinas-logo-3.png" style="height: 40px;">
+            <div class="logo">Paghinas</div>
+            <ul class="nav-links">
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricing">Precios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <a href="#contact" class="nav-cta">Empezar Ahora</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Paghinas</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+        </div>
+        <ul class="mobile-menu-links">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#pricing">Precios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <div class="mobile-menu-cta">
+            <a href="#contact" class="nav-cta" style="display: block; text-align: center;">Empezar Ahora</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="title-mobile">Páginas <span class="highlight">Web</span> Hermosas para <span class="highlight">Negocios</span></h1>
+                <h1 class="title-desktop">Páginas <span class="highlight">Web</span> Hermosas para <span class="highlight">Negocios</span> Pequeños y Grandes</h1>
+                <div class="hero-secondary" style="margin-top: 1.5rem">
+                    <span class="hero-badge">Restaurantes</span>
+                    <span class="hero-badge">Peluquerias</span>
+                    <span class="hero-badge">Ferreterias</span>
+                    <span class="hero-badge">+</span>
+                    <p>Creamos sitios web impresionantes y adaptables a móviles que traen clientes a tu puerta y aumentan tu presencia local.</p>
+                    <a href="#contact" class="cta-button">Obtén Tu Consulta Gratis</a>
+                </div>
+            </div>
+            <div class="hero-secondary-mobile">
+                <div>
+                    <span class="hero-badge-mobile">Restaurantes</span>
+                    <span class="hero-badge-mobile">Peluquerias</span>
+                    <span class="ferreteria-badge">Ferreterias</span>
+                    <span class="hero-badge-mobile">+</span>
+                    <p>Creamos sitios web impresionantes y adaptables a móviles que traen clientes a tu puerta y aumentan tu presencia local.</p>
+                </div>
+                <div class="hero-secondary-mobile-button">
+                    <a href="#contact" class="cta-button" style="width: 225px">Obtén Tu Consulta</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="main-phone">
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="phone-icon"></div>
+                        <div class="logo" style="font-size: 1.8rem;">Paghinas</div>
+                    </div>
+                </div>
+                <div class="floating-card card-1" style="width: 150px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">👑</div>
+                    <div style="font-weight: 700; font-size: 1.5rem;">12K</div>
+                    <div style="color: #666; font-size: 0.9rem;">Clientes</div>
+                </div>
+                <div class="floating-card card-2" style="width: 180px;">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">Reunión Ventas</div>
+                    <div style="color: #666; font-size: 0.9rem;">12:30 - 13:15</div>
+                </div>
+                <div class="floating-card card-3" style="width: 160px;">
+                    <div style="font-weight: 600; margin-bottom: 0.5rem;">📍 Ubicación</div>
+                    <div style="color: #666; font-size: 0.85rem;">Sydney, Australia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Lo Que Hacemos Por Ti</h2>
+        <p class="section-subtitle">Soluciones completas para hacer crecer tu negocio en línea</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Diseño Personalizado</h3>
+                <p>Diseños llamativos adaptados a tu marca que te hacen destacar de la competencia y atraer más clientes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Optimizado para Móviles</h3>
+                <p>Perfecto en cualquier dispositivo. La mayoría de tus clientes navegan desde móviles, así que nos aseguramos de que te veas increíble en todas partes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Rápido y Confiable</h3>
+                <p>Velocidades de carga ultrarrápidas y alojamiento sólido como una roca. Tu sitio estará en línea 24/7, listo para los clientes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>SEO Local</h3>
+                <p>Hazte encontrar en Google cuando los locales busquen tus servicios. Optimizamos tu sitio para dominar los resultados de búsqueda locales.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Actualizaciones Fáciles</h3>
+                <p>Herramientas simples para actualizar tu contenido, horarios y ofertas especiales en cualquier momento. No se requieren habilidades técnicas.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>Soporte Continuo</h3>
+                <p>Estamos aquí cuando nos necesites. Soporte ilimitado para mantener tu sitio web funcionando sin problemas y con aspecto fresco.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>Páginas Que Hemos Creado</h2>
+        <p class="section-subtitle">Proyectos exitosos que han transformado negocios locales</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img">🍕</div>
+                <div class="portfolio-info">
+                    <h3>Pizzería Tony</h3>
+                    <p>Sitio web moderno de restaurante con pedidos en línea y sistema de reservas.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">💇</div>
+                <div class="portfolio-info">
+                    <h3>Salón Elegancia</h3>
+                    <p>Sitio elegante de salón con reserva de citas y exhibición de servicios.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🔧</div>
+                <div class="portfolio-info">
+                    <h3>Fontanería RápidaFix</h3>
+                    <p>Sitio profesional de servicios con solicitudes de presupuesto instantáneo y contacto de emergencia.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">☕</div>
+                <div class="portfolio-info">
+                    <h3>Café Brew Mañanero</h3>
+                    <p>Sitio acogedor de cafetería con menú, calendario de eventos y programa de lealtad.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🏋️</div>
+                <div class="portfolio-info">
+                    <h3>Gimnasio PowerFit</h3>
+                    <p>Sitio dinámico de centro de fitness con horarios de clases y planes de membresía.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🌸</div>
+                <div class="portfolio-info">
+                    <h3>Floristería Florecer</h3>
+                    <p>Hermoso sitio web de floristería con pedidos en línea y seguimiento de entregas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Lo Que Dicen Nuestros Clientes</h2>
+        <p class="section-subtitle">Historias reales de éxito de nuestros clientes satisfechos</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"¡Nuestro nuevo sitio web ha traído tantos clientes nuevos! El equipo hizo que todo fuera simple y los resultados hablan por sí mismos."</div>
+                <div class="testimonial-author">María Rodríguez</div>
+                <div class="testimonial-business">Pizzería Tony</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Finalmente, un sitio web que realmente se ve profesional y funciona perfectamente en móviles. ¡A mis clientes les encanta la función de reserva en línea!"</div>
+                <div class="testimonial-author">Sara Chen</div>
+                <div class="testimonial-business">Salón Elegancia</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"La mejor inversión que he hecho para mi negocio. El soporte continuo significa que nunca tengo que preocuparme por problemas técnicos."</div>
+                <div class="testimonial-author">Jaime Thompson</div>
+                <div class="testimonial-business">Fontanería RápidaFix</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <h2>Precios Simples y Transparentes</h2>
+        <p class="section-subtitle">Precios justos que cumplen sus promesas</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Inicial</h3>
+                <div class="price">49,99€</div>
+                <p>Perfecto para pequeñas tiendas que empiezan en línea</p>
+                <ul class="pricing-features">
+                    <li>Sitio web personalizado de 5 páginas</li>
+                    <li>Diseño responsive móvil</li>
+                    <li>Formulario de contacto</li>
+                    <li>Integración con Google Maps</li>
+                    <li>Configuración básica de SEO</li>
+                    <li>30 días de soporte</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Profesional</h3>
+                <div class="price">64,99€</div>
+                <p>La opción más popular para negocios en crecimiento</p>
+                <ul class="pricing-features">
+                    <li>Sitio web personalizado de 10 páginas</li>
+                    <li>Diseño móvil premium</li>
+                    <li>Formularios de contacto avanzados</li>
+                    <li>Galería de fotos</li>
+                    <li>Configuración de blog</li>
+                    <li>SEO avanzado</li>
+                    <li>Integración de redes sociales</li>
+                    <li>90 días de soporte</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Empresarial</h3>
+                <div class="price">79,99€</div>
+                <p>Solución completa con todo lo que necesitas</p>
+                <ul class="pricing-features">
+                    <li>Páginas ilimitadas</li>
+                    <li>Funcionalidad personalizada</li>
+                    <li>Listo para comercio electrónico</li>
+                    <li>Sistema de reservas en línea</li>
+                    <li>Portal de clientes</li>
+                    <li>Paquete SEO premium</li>
+                    <li>Soporte prioritario</li>
+                    <li>1 año de soporte incluido</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>¿Listo Para Hacer Crecer Tu Negocio?</h2>
+            <p>Hablemos sobre tu proyecto. Responderemos dentro de 24 horas con una consulta gratuita y un presupuesto personalizado.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Tu Nombre" required>
+                <input type="email" placeholder="Tu Email" required>
+                <input type="tel" placeholder="Número de Teléfono">
+                <input type="text" placeholder="Nombre del Negocio">
+                <textarea placeholder="Cuéntanos sobre tu proyecto y objetivos"></textarea>
+                <button type="submit" class="submit-button">Obtén Tu Consulta Gratis</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Paghinas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const overlay = document.getElementById('overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a, .mobile-menu-cta a');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Te contactaremos dentro de 24 horas para hablar sobre tu proyecto.');
+            this.reset();
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

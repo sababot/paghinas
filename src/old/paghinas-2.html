@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Paghinas - Páginas Web Que Traen Clientes a Tu Puerta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: inter;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #20225c 0%, #1a4d7a 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.75rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-cta {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(32, 34, 92, 0.4);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(32, 34, 92, 0.6);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1a1a1a;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-links a:hover {
+            color: #20225c;
+        }
+
+        .mobile-menu-cta {
+            margin-top: 2rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #20225c;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #20225c;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .services {
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(32, 34, 92, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #20225c;
+        }
+
+        .portfolio {
+            background: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .portfolio-info {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .portfolio-info h3 {
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            color: white;
+        }
+
+        .testimonials h2 {
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-business {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .pricing {
+            background: #f8f9fa;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(32, 34, 92, 0.2);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.featured .pricing-features li {
+            border-bottom-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-features li::before {
+            content: "✓ ";
+            color: #20225c;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-card.featured .pricing-features li::before {
+            color: white;
+        }
+
+        .contact {
+            background: white;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #20225c;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #20225c, #1a4d7a);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(32, 34, 92, 0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div style="display: flex; gap: 10px">
+            <img src="paghinas-logo-3.png" style="height: 50px; padding: 0; margin: 0;"></img>
+            <div class="logo">Paghinas</div>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#pricing">Precios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Empezar Ahora</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div style="display: flex; gap: 10px">
+                <img src="paghinas-logo-3.png" style="height: 50px; padding: 0; margin: 0;"></img>
+                <div class="logo">Paghinas</div>
+            </div>
+            <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+        </div>
+        <ul class="mobile-menu-links">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#pricing">Precios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <div class="mobile-menu-cta">
+            <a href="#contact" class="nav-cta" style="display: block; text-align: center;">Empezar Ahora</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Páginas Web Hermosas para Negocios Pequeños y Grandes</h1>
+            <p>Creamos sitios web impresionantes y adaptables a móviles que traen clientes a tu puerta y aumentan tu presencia local.</p>
+            <a href="#contact" class="cta-button">Obtén Tu Consulta Gratis</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Lo Que Hacemos Por Ti</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Diseño Personalizado</h3>
+                <p>Diseños llamativos adaptados a tu marca que te hacen destacar de la competencia y atraer más clientes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Optimizado para Móviles</h3>
+                <p>Perfecto en cualquier dispositivo. La mayoría de tus clientes navegan desde móviles, así que nos aseguramos de que te veas increíble en todas partes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Rápido y Confiable</h3>
+                <p>Velocidades de carga ultrarrápidas y alojamiento sólido como una roca. Tu sitio estará en línea 24/7, listo para los clientes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>SEO Local</h3>
+                <p>Hazte encontrar en Google cuando los locales busquen tus servicios. Optimizamos tu sitio para dominar los resultados de búsqueda locales.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Actualizaciones Fáciles</h3>
+                <p>Herramientas simples para actualizar tu contenido, horarios y ofertas especiales en cualquier momento. No se requieren habilidades técnicas.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>Soporte Continuo</h3>
+                <p>Estamos aquí cuando nos necesites. Soporte ilimitado para mantener tu sitio web funcionando sin problemas y con aspecto fresco.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>Paginas Que Hemos Creado</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-img">🍕</div>
+                <div class="portfolio-info">
+                    <h3>Pizzería Tony</h3>
+                    <p>Sitio web moderno de restaurante con pedidos en línea y sistema de reservas.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">💇</div>
+                <div class="portfolio-info">
+                    <h3>Salón Elegancia</h3>
+                    <p>Sitio elegante de salón con reserva de citas y exhibición de servicios.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🔧</div>
+                <div class="portfolio-info">
+                    <h3>Fontanería RápidaFix</h3>
+                    <p>Sitio profesional de servicios con solicitudes de presupuesto instantáneo y contacto de emergencia.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">☕</div>
+                <div class="portfolio-info">
+                    <h3>Café Brew Mañanero</h3>
+                    <p>Sitio acogedor de cafetería con menú, calendario de eventos y programa de lealtad.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🏋️</div>
+                <div class="portfolio-info">
+                    <h3>Gimnasio PowerFit</h3>
+                    <p>Sitio dinámico de centro de fitness con horarios de clases y planes de membresía.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-img">🌸</div>
+                <div class="portfolio-info">
+                    <h3>Floristería Florecer</h3>
+                    <p>Hermoso sitio web de floristería con pedidos en línea y seguimiento de entregas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Lo Que Dicen Nuestros Clientes</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"¡Nuestro nuevo sitio web ha traído tantos clientes nuevos! El equipo hizo que todo fuera simple y los resultados hablan por sí mismos."</div>
+                <div class="testimonial-author">María Rodríguez</div>
+                <div class="testimonial-business">Pizzería Tony</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Finalmente, un sitio web que realmente se ve profesional y funciona perfectamente en móviles. ¡A mis clientes les encanta la función de reserva en línea!"</div>
+                <div class="testimonial-author">Sara Chen</div>
+                <div class="testimonial-business">Salón Elegancia</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"La mejor inversión que he hecho para mi negocio. El soporte continuo significa que nunca tengo que preocuparme por problemas técnicos."</div>
+                <div class="testimonial-author">Jaime Thompson</div>
+                <div class="testimonial-business">Fontanería RápidaFix</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <h2>Precios Simples y Transparentes</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Inicial</h3>
+                <div class="price">49,99</div>
+                <p>Perfecto para pequeñas tiendas que empiezan en línea</p>
+                <ul class="pricing-features">
+                    <li>Sitio web personalizado de 5 páginas</li>
+                    <li>Diseño responsive móvil</li>
+                    <li>Formulario de contacto</li>
+                    <li>Integración con Google Maps</li>
+                    <li>Configuración básica de SEO</li>
+                    <li>30 días de soporte</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Profesional</h3>
+                <div class="price">64,99€</div>
+                <p>La opción más popular para negocios en crecimiento</p>
+                <ul class="pricing-features">
+                    <li>Sitio web personalizado de 10 páginas</li>
+                    <li>Diseño móvil premium</li>
+                    <li>Formularios de contacto avanzados</li>
+                    <li>Galería de fotos</li>
+                    <li>Configuración de blog</li>
+                    <li>SEO avanzado</li>
+                    <li>Integración de redes sociales</li>
+                    <li>90 días de soporte</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>Empresarial</h3>
+                <div class="price">79,99€</div>
+                <p>Solución completa con todo lo que necesitas</p>
+                <ul class="pricing-features">
+                    <li>Páginas ilimitadas</li>
+                    <li>Funcionalidad personalizada</li>
+                    <li>Listo para comercio electrónico</li>
+                    <li>Sistema de reservas en línea</li>
+                    <li>Portal de clientes</li>
+                    <li>Paquete SEO premium</li>
+                    <li>Soporte prioritario</li>
+                    <li>1 año de soporte incluido</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>¿Listo Para Hacer Crecer Tu Negocio?</h2>
+            <p>Hablemos sobre tu proyecto. Responderemos dentro de 24 horas con una consulta gratuita y un presupuesto personalizado.</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Tu Nombre" required>
+                <input type="email" placeholder="Tu Email" required>
+                <input type="tel" placeholder="Número de Teléfono">
+                <input type="text" placeholder="Nombre del Negocio">
+                <textarea placeholder="Cuéntanos sobre tu proyecto y objetivos"></textarea>
+                <button type="submit" class="submit-button">Obtén Tu Consulta Gratis</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Paghinas. Todos los derechos reservados. | Ayudando a negocios locales a prosperar en línea.</p>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const overlay = document.getElementById('overlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a, .mobile-menu-cta a');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Te contactaremos dentro de 24 horas para hablar sobre tu proyecto.');
+            this.reset();
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
