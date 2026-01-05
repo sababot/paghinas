@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/b884ebaf23.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/paghinas-logo-3.png">
+    <link rel="icon" type="image/png" href="images/paghinas-logo-4.png">
     <title>Paghinas - Páginas Web Que Traen Clientes a Tu Puerta</title>
     <style>
         * {
@@ -376,9 +376,14 @@
 
         .phone-icon {
             width: 60px;
-            height: 60px;
-            background: #20225c;
+            height: 65px;
+            background: white;
+            background-image: url("images/paghinas-logo-4.png");
+            background-size: cover;      
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 11px;
+            border: none;
             margin: 0 auto 1.5rem;
         }
 
@@ -684,7 +689,7 @@
             align-items: center;
             justify-content: center;
             width: 40%;
-            margin-top: 4rem;
+            margin-top: 0rem;
         }
 
         .title-mobile {
@@ -710,6 +715,14 @@
 
         .llama {
             justify-content: flex-start;
+        }
+
+        .llama-mobile {
+            display: none;
+        }
+
+        .llama-desktop {
+            display: block;
         }
 
         footer {
@@ -744,6 +757,11 @@
 
             .hero-secondary-mobile {
                 display: flex;
+                margin-top: 4rem;
+            }
+
+            .hero-secondary-mobile-button {
+                margin-top: 0rem;
             }
 
             .hero-secondary {
@@ -752,6 +770,14 @@
 
             .llama {
                 justify-content: center;
+            }
+
+            .llama-mobile {
+                display: block;
+            }
+
+            .llama-desktop {
+                display: none;
             }
         }
 
@@ -782,6 +808,7 @@
 
             .hero-secondary-mobile-button {
                 width: 100%;
+                margin-top: 4rem;
             }
 
             .hero p {
@@ -858,13 +885,17 @@
             .hero {
                 padding: 10rem 5% 4rem;
             }
+
+            .hero-secondary-mobile-button {
+                margin-top: 4rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="header-nav">
         <div class="nav-left">
-            <img src="images/paghinas-logo-3.png" class="logo-img">
+            <img src="images/paghinas-logo-4.png" class="logo-img">
             <div class="logo">Paghinas</div>
             <ul class="nav-links">
                 <li><a href="#services">Servicios</a></li>
@@ -906,7 +937,8 @@
             <div class="hero-text">
                 <div class="llama" style="display: flex; margin-bottom: 0.8rem; padding: 0">
                     <div style="display: flex; column-gap: 0.5rem; align-items: center;">
-                        <p style="font-size: 0.8rem; color: #666; margin: 0; padding: 0; opacity: 0.4">Si tienes cualquier consulta llamanos --></p>
+                        <p class="llama-mobile" style="font-size: 0.8rem; color: #666; margin: 0; padding: 0; opacity: 0.4">Si tienes cualquier consulta llamanos --></p>
+                        <p class="llama-desktop" style="font-size: 1rem; color: #666; margin: 0; padding: 0; opacity: 0.4">Si tienes cualquier consulta llamanos --></p>
                     </div>
                 </div>
                 <h1 class="title-mobile">Páginas <span class="highlight">Web</span> Bonitas para <span class="highlight">Negocios</span> Pequeños y Grandes</h1>
@@ -917,7 +949,21 @@
                     <span class="hero-badge">Ferreterias</span>
                     <span class="hero-badge">+</span>
                     <p>Creamos sitios web impresionantes y adaptables a móviles que traen clientes a tu puerta y aumentan tu presencia local.</p>
-                    <a href="#contact" class="cta-button">Obtén Tu Consulta Gratis --></a>
+                    <div style="display: flex; text-align: center; align-items: center;">
+                        <div>
+                            <a href="#contact" class="cta-button">Obtén Tu Consulta&nbsp;&nbsp;--></a>
+                            <div>
+                                <div style="display: flex; align-items: center; column-gap: 0rem; justify-content: center; margin-top: 1.1rem">
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                </div>
+                                <p class="minor-text" style="font-size: 0.8rem; color: #666; margin: 0; padding: 0; opacity: 0.4; text-align: center;">Traemos clientes a tu puerta</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-secondary-mobile" style="margin-top: 2rem">
                     <div>
@@ -929,17 +975,21 @@
                             <span class="hero-badge-mobile">+</span>
                         </div>
                     </div>
-                    <div class="hero-secondary-mobile-button">
-                        <a href="#contact" class="cta-button" style="width: 260px">Obtén Tu Consulta&nbsp;&nbsp;--></a>
+                    <div class="hero-secondary-mobile-button" style="display: flex; text-align: center; align-items: center; justify-content: center;">
+                        <div>
+                            <a href="#contact" class="cta-button" style="width: 260px">Obtén Tu Consulta&nbsp;&nbsp;--></a>
+                            <div>
+                                <div style="display: flex; align-items: center; column-gap: 0rem; justify-content: center; margin-top: 1.1rem">
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                    <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
+                                </div>
+                                <p style="font-size: 0.8rem; color: #666; margin: 0; padding: 0; opacity: 0.4; text-align: center;">Traemos clientes a tu puerta</p>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: flex; align-items: center; column-gap: 0rem; justify-content: center;hero-secondary-mobile-button; margin-top: 1.1rem">
-                        <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
-                        <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
-                        <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
-                        <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
-                        <a href="#contact" class="stars-button"><i class="fa-solid fa-star"></i></a>
-                    </div>
-                    <p style="font-size: 0.8rem; color: #666; margin: 0; padding: 0; opacity: 0.4; text-align: center;">Traemos clientes a tu puerta</p>
                 </div>
             </div>
             <div class="hero-visual">
