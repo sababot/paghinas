@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/b884ebaf23.js" crossorigin="anonymous"></script>
@@ -264,10 +264,12 @@
 
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 6rem 5% 5rem;
+            padding-top: max(6rem, calc(5rem + env(safe-area-inset-top)));
             background: white;
             position: relative;
             overflow: hidden;
