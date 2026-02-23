@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pizzeria Tony - Pizzería Tradicional Italiana</title>
+  <title>Pizzeria Tony — Pizzería Tradicional Italiana desde 1987</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/png" href="../images/portfolio/pizzeria-tony-logo.png">
+
   <style>
     :root {
       --cream: #F5F0E8;
@@ -21,8 +23,7 @@
       --muted: #8A7F72;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -33,7 +34,7 @@
       cursor: none;
     }
 
-    /* Custom cursor */
+    /* ── CURSOR ── */
     .cursor {
       position: fixed;
       width: 10px; height: 10px;
@@ -55,910 +56,760 @@
       transform: translate(-50%, -50%);
       opacity: 0.5;
     }
+    .cursor.hovering { transform: translate(-50%,-50%) scale(2.5); background: transparent; border: 1px solid var(--gold); }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; width: 100%;
+      position: fixed; top: 0; width: 100%;
       z-index: 100;
       padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: linear-gradient(to bottom, rgba(17,17,16,0.95), transparent);
-      transition: background 0.3s;
+      transition: background 0.3s, padding 0.3s;
     }
-    nav.scrolled { background: rgba(17,17,16,0.97); }
+    nav.scrolled {
+      background: rgba(17,17,16,0.97);
+      padding: 1rem 4rem;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
+      font-size: 1.6rem; font-weight: 700;
       letter-spacing: 0.05em;
-      color: var(--gold);
-      text-decoration: none;
+      color: var(--gold); text-decoration: none;
     }
     .nav-logo span { color: var(--red); font-style: italic; }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a {
       font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      font-size: 0.72rem; letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      opacity: 0.75;
-      transition: opacity 0.2s, color 0.2s;
+      color: var(--cream); text-decoration: none;
+      opacity: 0.75; transition: opacity 0.2s, color 0.2s;
     }
     .nav-links a:hover { opacity: 1; color: var(--gold); }
     .nav-cta {
       border: 1px solid var(--gold);
       padding: 0.55rem 1.4rem;
-      color: var(--gold) !important;
-      opacity: 1 !important;
-      transition: background 0.2s !important;
+      color: var(--gold) !important; opacity: 1 !important;
+      transition: background 0.2s, color 0.2s !important;
     }
     .nav-cta:hover { background: var(--gold) !important; color: var(--dark) !important; }
 
-    /* HERO */
+    /* ── HERO ── */
     #hero {
       height: 100vh;
       position: relative;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: 
-        radial-gradient(ellipse at 70% 50%, rgba(192,57,43,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.1) 0%, transparent 50%),
+      background:
+        radial-gradient(ellipse at 70% 50%, rgba(192,57,43,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.12) 0%, transparent 50%),
         linear-gradient(135deg, #0e0d0c 0%, #1a1714 50%, #0e0d0c 100%);
     }
     .hero-texture {
       position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23C9A84C' fill-opacity='0.035'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    /* Hero image background with overlay */
+    .hero-image-bg {
+      position: absolute; inset: 0;
+      background-image: url('../images/portfolio/pizzeria-tony-hero.jpg');
+      background-size: cover; background-position: center;
+      opacity: 0.18;
     }
     .hero-content {
       position: relative;
-      padding: 0 4rem;
-      max-width: 900px;
+      padding: 0 5rem;
+      max-width: 950px;
+      z-index: 2;
     }
     .hero-tag {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.3s forwards;
+      font-size: 0.72rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
     }
+    .hero-tag i { font-size: 0.6rem; }
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(4rem, 10vw, 9rem);
-      line-height: 0.92;
-      font-weight: 900;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.5s forwards;
+      font-size: clamp(4.5rem, 10.5vw, 9.5rem);
+      line-height: 0.9; font-weight: 900;
+      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--red);
-      display: block;
-    }
+    .hero-title em { font-style: italic; color: var(--red); display: block; }
     .hero-sub {
-      font-size: 1.35rem;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--muted);
-      margin-top: 1.5rem;
-      max-width: 480px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.7s forwards;
+      font-size: 1.3rem; font-weight: 300; font-style: italic;
+      color: rgba(245,240,232,0.7);
+      margin-top: 1.75rem; max-width: 500px; line-height: 1.8;
+      opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
     }
     .hero-actions {
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 3rem;
+      display: flex; gap: 1.75rem; margin-top: 3rem;
       align-items: center;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.9s forwards;
+      opacity: 0; animation: fadeUp 0.9s 0.9s forwards;
     }
     .btn-primary {
-      background: var(--red);
-      color: var(--cream);
-      text-decoration: none;
-      padding: 1rem 2.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      background: var(--red); color: var(--cream); text-decoration: none;
+      padding: 1rem 2.75rem;
+      font-family: 'DM Mono', monospace; font-size: 0.73rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
       transition: background 0.25s, transform 0.2s;
-      display: inline-block;
+      display: inline-flex; align-items: center; gap: 0.6rem;
     }
     .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
     .btn-secondary {
-      color: var(--gold);
-      text-decoration: none;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: 2px;
-      transition: opacity 0.2s;
+      color: var(--gold); text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 0.73rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(201,168,76,0.5);
+      padding-bottom: 3px;
+      transition: opacity 0.2s, border-color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
     }
-    .btn-secondary:hover { opacity: 0.7; }
+    .btn-secondary:hover { opacity: 0.75; border-color: var(--gold); }
 
     .hero-scroll {
-      position: absolute;
-      bottom: 3rem; left: 50%;
+      position: absolute; bottom: 3rem; left: 50%;
       transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
       animation: fadeIn 1s 1.5s forwards; opacity: 0;
     }
     .scroll-line {
-      width: 1px; height: 50px;
+      width: 1px; height: 54px;
       background: linear-gradient(to bottom, var(--gold), transparent);
       animation: scrollPulse 1.8s ease-in-out infinite;
     }
 
-    /* STRIP */
-    .strip {
-      background: var(--red);
-      padding: 1rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
+    /* ── MARQUEE STRIP ── */
+    .strip { background: var(--red); padding: 0.9rem 0; overflow: hidden; white-space: nowrap; }
     .strip-inner {
       display: inline-block;
-      animation: marquee 20s linear infinite;
+      animation: marquee 22s linear infinite;
       font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
-      font-style: italic;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.85);
+      font-size: 0.88rem; font-style: italic; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.88);
     }
-    .strip-inner span { margin: 0 2rem; }
-    .strip-dot { color: var(--gold-light); }
+    .strip-inner span { margin: 0 2.2rem; }
+    .strip-dot { color: var(--gold-light); margin: 0 0.5rem; }
 
-    /* SECTION COMMONS */
-    section { padding: 7rem 4rem; }
+    /* ── SECTION COMMONS ── */
+    section { padding: 8rem 5rem; }
     .section-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
+      font-size: 0.68rem; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--gold);
       margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--gold);
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      line-height: 1.05;
-      font-weight: 700;
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      line-height: 1.03; font-weight: 700;
     }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     #about {
       background: var(--charcoal);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 7rem; align-items: center;
     }
     .about-text p {
-      font-size: 1.2rem;
-      line-height: 1.85;
-      color: rgba(245,240,232,0.8);
-      margin-top: 1.5rem;
-      font-weight: 300;
+      font-size: 1.18rem; line-height: 1.9;
+      color: rgba(245,240,232,0.78);
+      margin-top: 1.5rem; font-weight: 300;
     }
-    .about-text p + p { margin-top: 1rem; }
+    .about-text p + p { margin-top: 1.1rem; }
     .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 3rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 3.5rem;
     }
-    .stat {
-      border-left: 2px solid var(--gold);
-      padding-left: 1.2rem;
-    }
+    .stat { border-left: 2px solid var(--gold); padding-left: 1.2rem; }
     .stat-num {
       font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
+      font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1;
     }
     .stat-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.3rem;
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--muted); margin-top: 0.4rem;
     }
-    .about-visual {
-      position: relative;
-    }
-    .about-img-main {
-      width: 100%;
-      aspect-ratio: 3/4;
+    .about-visual { position: relative; }
+    /* Image container — aspect ratio 3/4 portrait */
+    .about-img-wrap {
+      width: 100%; aspect-ratio: 3/4;
+      overflow: hidden; position: relative;
       background: linear-gradient(145deg, #2a2118, #1a150f);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .about-img-main::before {
-      content: '🍕';
-      font-size: 8rem;
-      filter: grayscale(0.3) brightness(0.9);
+    .about-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      transition: transform 0.6s ease;
     }
-    .about-img-main::after {
+    .about-img-wrap:hover img { transform: scale(1.04); }
+    /* Image overlay */
+    .about-img-wrap::after {
       content: '';
       position: absolute; inset: 0;
-      background: 
-        radial-gradient(ellipse at 30% 70%, rgba(192,57,43,0.3), transparent 60%),
-        radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.15), transparent 50%);
+      background:
+        radial-gradient(ellipse at 30% 70%, rgba(192,57,43,0.25), transparent 60%),
+        radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.12), transparent 50%);
+      pointer-events: none;
     }
     .about-badge {
-      position: absolute;
-      bottom: -1.5rem; left: -1.5rem;
-      background: var(--gold);
-      color: var(--dark);
-      padding: 1.5rem;
-      text-align: center;
-      z-index: 2;
+      position: absolute; bottom: -1.5rem; left: -1.5rem;
+      background: var(--gold); color: var(--dark);
+      padding: 1.6rem 1.8rem; text-align: center; z-index: 2;
     }
     .about-badge-num {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      line-height: 1;
+      font-size: 2.6rem; font-weight: 900; line-height: 1;
     }
     .about-badge-text {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
+      font-size: 0.58rem; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-top: 0.35rem;
     }
 
-    /* MENU */
-    #menu {
-      background: var(--dark);
-    }
+    /* ── MENU ── */
+    #menu { background: var(--dark); padding: 8rem 5rem; }
     .menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: flex; justify-content: space-between; align-items: flex-end;
       margin-bottom: 4rem;
     }
     .menu-tabs {
-      display: flex;
-      gap: 0;
-      border: 1px solid rgba(201,168,76,0.3);
+      display: flex; border: 1px solid rgba(201,168,76,0.25);
     }
     .tab-btn {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.7rem 1.5rem;
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      cursor: none;
-      transition: all 0.25s;
-      border-right: 1px solid rgba(201,168,76,0.3);
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border: none; background: transparent; color: var(--muted);
+      cursor: pointer; transition: all 0.25s;
+      border-right: 1px solid rgba(201,168,76,0.25);
     }
     .tab-btn:last-child { border-right: none; }
     .tab-btn.active { background: var(--gold); color: var(--dark); }
-    .tab-btn:hover:not(.active) { color: var(--gold); background: rgba(201,168,76,0.05); }
+    .tab-btn:hover:not(.active) { color: var(--gold); background: rgba(201,168,76,0.06); }
 
     .menu-section { display: none; }
-    .menu-section.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5px; }
-
+    .menu-section.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5px;
+    }
     .menu-item {
-      background: rgba(28,28,26,0.8);
-      padding: 2rem;
-      border: 1px solid rgba(201,168,76,0.08);
+      background: rgba(28,28,26,0.85);
+      padding: 2.2rem;
+      border: 1px solid rgba(201,168,76,0.07);
       transition: border-color 0.3s, background 0.3s;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .menu-item::before {
       content: '';
       position: absolute; top: 0; left: 0;
-      width: 3px; height: 0;
-      background: var(--red);
+      width: 3px; height: 0; background: var(--red);
       transition: height 0.35s ease;
     }
     .menu-item:hover::before { height: 100%; }
-    .menu-item:hover { border-color: rgba(201,168,76,0.2); background: rgba(28,28,26,1); }
-
+    .menu-item:hover { border-color: rgba(201,168,76,0.22); background: rgba(28,28,26,1); }
     .item-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 0.8rem;
     }
     .item-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
+      font-size: 1.25rem; font-weight: 700;
     }
     .item-price {
       font-family: 'DM Mono', monospace;
-      font-size: 1rem;
-      color: var(--gold);
-      white-space: nowrap;
-      margin-left: 1rem;
+      font-size: 0.95rem; color: var(--gold);
+      white-space: nowrap; margin-left: 1rem;
     }
     .item-desc {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.6;
-      font-style: italic;
+      font-size: 0.98rem; font-weight: 300;
+      color: var(--muted); line-height: 1.65; font-style: italic;
     }
     .item-tag {
-      display: inline-block;
-      margin-top: 0.75rem;
-      padding: 0.2rem 0.6rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--red);
-      color: var(--red);
+      display: inline-block; margin-top: 0.85rem;
+      padding: 0.2rem 0.65rem;
+      font-family: 'DM Mono', monospace; font-size: 0.58rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid var(--red); color: var(--red);
     }
+    .item-tag.tag-gold { border-color: var(--gold); color: var(--gold); }
 
-    /* GALLERY / AMBIANCE */
-    #gallery {
-      background: var(--charcoal);
-      padding: 7rem 0;
-      overflow: hidden;
-    }
-    .gallery-header { padding: 0 4rem; margin-bottom: 3rem; }
+    /* ── GALLERY ── */
+    #gallery { background: var(--charcoal); padding: 8rem 0; overflow: hidden; }
+    .gallery-header { padding: 0 5rem; margin-bottom: 3.5rem; }
     .gallery-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 2fr;
-      grid-template-rows: 300px 200px;
+      grid-template-rows: 340px 220px;
       gap: 4px;
     }
     .gallery-cell {
+      position: relative; overflow: hidden;
       background: linear-gradient(135deg, #1e1a14, #2a2015);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      transition: transform 0.4s ease;
     }
-    .gallery-cell:hover { transform: scale(1.02); }
-    .gallery-cell:nth-child(1) { grid-column: 1; grid-row: 1/3; font-size: 6rem; }
-    .gallery-cell:nth-child(2) { background: linear-gradient(135deg, #2a1a10, #1e130a); }
-    .gallery-cell:nth-child(3) { background: linear-gradient(135deg, #0e0e0c, #1a1a16); font-size: 3rem; }
-    .gallery-cell:nth-child(4) { grid-column: 4; grid-row: 1/3; font-size: 5rem; }
-    .gallery-cell:nth-child(5) { background: linear-gradient(135deg, #1a120a, #251a10); }
-    .gallery-cell:nth-child(6) { background: linear-gradient(135deg, #100e0a, #1a1714); }
-    .gallery-cell::after {
-      content: '';
+    /* Image sizing for gallery cells */
+    .gallery-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+      filter: brightness(0.88) saturate(1.1);
+    }
+    .gallery-cell:hover img { transform: scale(1.06); filter: brightness(0.95) saturate(1.15); }
+    .gallery-cell:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+    .gallery-cell:nth-child(4) { grid-column: 4; grid-row: 1 / 3; }
+    .gallery-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+      z-index: 1;
     }
     .gallery-label {
-      position: absolute; bottom: 1rem; left: 1rem;
+      position: absolute; bottom: 1.2rem; left: 1.4rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      z-index: 2;
+      font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85);
+      z-index: 2; display: flex; align-items: center; gap: 0.5rem;
     }
+    .gallery-label i { color: var(--gold); font-size: 0.7rem; }
+    /* Fallback gradient if image fails */
+    .gallery-cell:nth-child(2) { background: linear-gradient(145deg, #2a1a10, #1e130a); }
+    .gallery-cell:nth-child(3) { background: linear-gradient(145deg, #141414, #1e1e1a); }
+    .gallery-cell:nth-child(5) { background: linear-gradient(145deg, #1a120a, #251a10); }
+    .gallery-cell:nth-child(6) { background: linear-gradient(145deg, #100e0a, #1a1714); }
 
-    /* RESERVATIONS */
+    /* ── RESERVACIONES ── */
     #reservaciones {
       background: var(--dark);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 7rem; align-items: start;
     }
-    .reservation-info .section-title { margin-bottom: 2rem; }
+    .reservation-info .section-title { margin-bottom: 2.5rem; }
     .info-block {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+      margin-bottom: 2rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
     }
     .info-block:last-child { border-bottom: none; }
     .info-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
+      font-size: 0.65rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.55rem;
     }
+    .info-label i { font-size: 0.7rem; }
     .info-value {
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1.7;
+      font-size: 1.15rem; font-weight: 300;
+      color: var(--cream); line-height: 1.75;
     }
     .info-value strong { font-weight: 600; color: var(--gold-light); }
 
     .reservation-form {
-      background: rgba(28,28,26,0.6);
+      background: rgba(28,28,26,0.65);
       border: 1px solid rgba(201,168,76,0.15);
-      padding: 3rem;
+      padding: 3.5rem;
     }
     .form-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
+      font-size: 1.9rem; font-weight: 700; margin-bottom: 2.5rem;
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { margin-bottom: 1.2rem; }
+    .form-group { margin-bottom: 1.3rem; }
     .form-group label {
       display: block;
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.55rem;
     }
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%;
       background: rgba(17,17,16,0.8);
-      border: 1px solid rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.18);
       color: var(--cream);
-      padding: 0.85rem 1rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.25s;
-      cursor: none;
+      padding: 0.9rem 1rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+      outline: none; transition: border-color 0.25s, background 0.25s;
+      cursor: text;
     }
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--gold); }
-    .form-group select option { background: #111; }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-submit {
-      width: 100%;
-      background: var(--red);
-      color: var(--cream);
-      border: none;
-      padding: 1.1rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      cursor: none;
-      transition: background 0.25s, transform 0.2s;
-      margin-top: 0.5rem;
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(17,17,16,0.95);
     }
-    .form-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: #111; }
+    .form-group textarea { resize: vertical; min-height: 95px; }
+    .form-submit {
+      width: 100%; background: var(--red); color: var(--cream);
+      border: none; padding: 1.15rem;
+      font-family: 'DM Mono', monospace; font-size: 0.78rem;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.25s, transform 0.2s;
+      margin-top: 0.5rem;
+      display: flex; align-items: center; justify-content: center; gap: 0.65rem;
+    }
+    .form-submit:hover { background: var(--red-dark); transform: translateY(-2px); }
 
-    /* TESTIMONIALS */
+    /* ── TESTIMONIOS ── */
     #testimonios {
       background: var(--red);
-      padding: 6rem 4rem;
-      position: relative;
-      overflow: hidden;
+      padding: 7rem 5rem;
+      position: relative; overflow: hidden;
     }
     #testimonios::before {
-      content: '"';
+      content: '\201C';
       position: absolute;
       font-family: 'Playfair Display', serif;
-      font-size: 25rem;
-      line-height: 1;
-      color: rgba(255,255,255,0.05);
-      top: -3rem; left: 2rem;
-      pointer-events: none;
+      font-size: 28rem; line-height: 1;
+      color: rgba(255,255,255,0.06);
+      top: -4rem; left: 1.5rem;
+      pointer-events: none; user-select: none;
     }
-    .testimonios-header { margin-bottom: 4rem; }
-    .testimonios-header .section-label { color: rgba(255,255,255,0.7); }
+    .testimonios-header { margin-bottom: 4rem; position: relative; }
+    .testimonios-header .section-label { color: rgba(255,255,255,0.65); }
+    .testimonios-header .section-label::before { background: rgba(255,255,255,0.4); }
     .testimonios-header .section-title { color: white; }
     .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
     }
     .review-card {
       background: rgba(255,255,255,0.1);
-      padding: 2.5rem;
+      padding: 2.75rem;
       backdrop-filter: blur(10px);
       border-top: 2px solid rgba(255,255,255,0.3);
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
-    .review-card:hover { background: rgba(255,255,255,0.15); }
+    .review-card:hover { background: rgba(255,255,255,0.16); transform: translateY(-4px); }
     .review-stars {
-      color: var(--gold-light);
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 1.2rem;
+      color: var(--gold-light); font-size: 0.85rem;
+      letter-spacing: 0.3em; margin-bottom: 1.3rem;
+      display: flex; gap: 0.2rem;
     }
     .review-text {
-      font-size: 1.15rem;
-      font-style: italic;
-      font-weight: 300;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
+      font-size: 1.13rem; font-style: italic; font-weight: 300;
+      color: rgba(255,255,255,0.92); line-height: 1.8; margin-bottom: 1.75rem;
     }
     .review-author {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
+      font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      display: flex; align-items: center; gap: 0.5rem;
     }
+    .review-source-icon { font-size: 0.85rem; }
 
-    /* CONTACT / MAP */
+    /* ── CONTACT ── */
     #contacto {
       background: var(--charcoal);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
     }
-    .contact-info {
-      padding: 7rem 5rem 7rem 4rem;
-    }
+    .contact-info { padding: 8rem 5rem 8rem 5rem; }
+    .contact-info .section-title { margin-bottom: 3rem; }
     .contact-item {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
+      display: flex; gap: 1.5rem; align-items: flex-start;
       margin-bottom: 2.5rem;
     }
-    .contact-icon {
-      font-size: 1.3rem;
-      margin-top: 0.2rem;
-      flex-shrink: 0;
+    .contact-icon-wrap {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 0.95rem;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .contact-item:hover .contact-icon-wrap {
+      background: rgba(201,168,76,0.1); border-color: var(--gold);
     }
     .contact-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.35rem;
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem;
     }
     .contact-value {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--cream);
-      line-height: 1.6;
+      font-size: 1.08rem; font-weight: 300;
+      color: var(--cream); line-height: 1.65;
     }
     .contact-social {
-      display: flex;
-      gap: 1rem;
-      margin-top: 3rem;
+      display: flex; gap: 0.75rem; margin-top: 3.5rem;
     }
     .social-link {
       width: 44px; height: 44px;
-      border: 1px solid rgba(201,168,76,0.4);
+      border: 1px solid rgba(201,168,76,0.35);
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: background 0.25s, border-color 0.25s;
+      color: var(--gold); text-decoration: none; font-size: 1rem;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
     }
     .social-link:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+    /* Map container — actual iframe */
     .map-container {
+      position: relative; overflow: hidden;
+      background: #0e0c0a;
+      min-height: 600px;
+    }
+    .map-container iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+      filter: grayscale(1) contrast(1.1) invert(0.92);
+      mix-blend-mode: normal;
+    }
+    .map-overlay {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--charcoal), transparent);
+      pointer-events: none;
+    }
+    /* Fallback when no iframe */
+    .map-fallback {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 100%;
       background: linear-gradient(135deg, #1a1510, #0e0c0a);
       position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 500px;
     }
-    .map-placeholder {
-      text-align: center;
-      padding: 2rem;
-    }
-    .map-placeholder .map-emoji { font-size: 4rem; display: block; margin-bottom: 1.5rem; }
-    .map-placeholder p {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .map-placeholder strong {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: var(--cream);
-      display: block;
-    }
-    .map-grid {
+    .map-grid-lines {
       position: absolute; inset: 0;
-      background-image: 
-        linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
     }
-    .map-pin {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -60%);
-      font-size: 2.5rem;
+    .map-pin-wrap {
+      position: relative; z-index: 2; text-align: center;
+    }
+    .map-pin-icon {
+      font-size: 3rem; color: var(--red);
+      display: block; margin-bottom: 1.5rem;
       animation: pinBounce 2s ease-in-out infinite;
+      filter: drop-shadow(0 4px 16px rgba(192,57,43,0.5));
     }
+    .map-pin-label p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem;
+    }
+    .map-pin-label strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 400; color: var(--cream); display: block;
+    }
+    .map-pin-label a {
+      display: inline-block; margin-top: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold);
+      text-decoration: none; border-bottom: 1px solid rgba(201,168,76,0.4);
+      padding-bottom: 2px; transition: opacity 0.2s;
+    }
+    .map-pin-label a:hover { opacity: 0.7; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       background: #0a0909;
-      padding: 4rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
+      padding: 5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3.5rem;
       border-top: 1px solid rgba(201,168,76,0.1);
     }
-    .footer-brand .nav-logo {
-      font-size: 2rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
+    .footer-brand .nav-logo { font-size: 2rem; display: inline-block; margin-bottom: 1.2rem; }
     .footer-brand p {
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.7;
-      font-style: italic;
-      max-width: 280px;
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--muted); line-height: 1.75;
+      font-style: italic; max-width: 280px; margin-bottom: 2rem;
     }
+    .footer-social { display: flex; gap: 0.65rem; }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,168,76,0.25);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.85rem; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
     .footer-col h4 {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
+      font-size: 0.62rem; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.5rem;
     }
     .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li { margin-bottom: 0.7rem; }
     .footer-col ul li a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 300;
-      transition: color 0.2s;
+      color: var(--muted); text-decoration: none;
+      font-size: 0.95rem; font-weight: 300;
+      transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem;
     }
+    .footer-col ul li a i { font-size: 0.7rem; opacity: 0.6; }
     .footer-col ul li a:hover { color: var(--cream); }
     .footer-bottom {
-      background: #0a0909;
-      padding: 1.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      background: #080807;
+      padding: 1.5rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
     }
     .footer-bottom p {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: rgba(138,127,114,0.6);
+      font-size: 0.62rem; letter-spacing: 0.1em;
+      color: rgba(138,127,114,0.55);
     }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(0.6); }
-    }
-    @keyframes pinBounce {
-      0%, 100% { transform: translate(-50%, -60%); }
-      50% { transform: translate(-50%, -70%); }
-    }
-
-    /* ── HAMBURGER MENU ── */
+    /* ── HAMBURGER ── */
     .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      z-index: 200;
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
     }
     .hamburger span {
-      display: block;
-      width: 24px; height: 2px;
+      display: block; width: 24px; height: 2px;
       background: var(--gold);
-      transition: transform 0.3s, opacity 0.3s;
-      transform-origin: center;
+      transition: transform 0.3s, opacity 0.3s; transform-origin: center;
     }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,9,9,0.97);
-      z-index: 150;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,9,9,0.98); z-index: 150;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.75rem;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--cream);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--cream); text-decoration: none; transition: color 0.2s;
     }
     .mobile-menu a:hover { color: var(--gold); }
     .mobile-menu .mobile-cta {
-      margin-top: 1rem;
-      border: 1px solid var(--gold);
-      color: var(--gold) !important;
-      padding: 0.8rem 2.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid var(--gold); color: var(--gold) !important;
+      padding: 0.85rem 2.75rem;
       font-family: 'DM Mono', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
     }
 
-    /* ── TABLET (≤ 1024px) ── */
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.35; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+    @keyframes pinBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* ── TABLET ── */
     @media (max-width: 1024px) {
       .reviews-grid { grid-template-columns: 1fr 1fr; }
+      #about { gap: 4rem; }
     }
 
-    /* ── MOBILE (≤ 768px) ── */
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
       body { cursor: auto; }
       .cursor, .cursor-ring { display: none; }
 
       nav { padding: 1.1rem 1.5rem; }
+      nav.scrolled { padding: 0.85rem 1.5rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      /* Hero */
       #hero { height: 100svh; align-items: flex-end; padding-bottom: 6rem; }
       .hero-content { padding: 0 1.5rem; }
-      .hero-title { font-size: clamp(3.2rem, 16vw, 5rem); line-height: 0.95; }
-      .hero-sub { font-size: 1.1rem; max-width: 100%; }
+      .hero-title { font-size: clamp(3rem, 15vw, 5rem); line-height: 0.93; }
+      .hero-sub { font-size: 1.05rem; max-width: 100%; }
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-top: 2rem; }
       .hero-scroll { display: none; }
 
-      /* Sections */
-      section { padding: 4rem 1.5rem; }
+      section { padding: 4.5rem 1.5rem; }
       .section-title { font-size: clamp(2rem, 8vw, 3rem); }
 
-      /* About */
-      #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
-      .about-visual { padding-bottom: 2rem; }
-      .about-img-main { aspect-ratio: 4/3; }
+      #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4.5rem 1.5rem; }
+      .about-img-wrap { aspect-ratio: 4/3; }
       .about-badge { bottom: 0; left: 0; }
-      .about-stats { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-      .stat-num { font-size: 2.2rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+      .stat-num { font-size: 2.3rem; }
 
-      /* Menu */
-      #menu { padding: 4rem 0; }
-      .menu-header { flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-bottom: 0; padding: 0 1.5rem 1.5rem; }
+      #menu { padding: 4.5rem 0; }
+      .menu-header {
+        flex-direction: column; align-items: flex-start;
+        gap: 1.3rem; margin-bottom: 0; padding: 0 1.5rem 1.5rem;
+      }
       .menu-tabs {
-        display: flex;
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: visible;
-        border: none;
-        border-bottom: 1px solid rgba(201,168,76,0.25);
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 0 1.5rem;
-        gap: 0;
+        display: flex; width: 100%; overflow-x: auto; border: none;
+        border-bottom: 1px solid rgba(201,168,76,0.2);
+        -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0;
       }
       .menu-tabs::-webkit-scrollbar { display: none; }
       .tab-btn {
-        flex: 0 0 auto;
-        padding: 0.75rem 1.2rem;
-        font-size: 0.68rem;
-        letter-spacing: 0.1em;
-        border: none;
-        border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
+        flex: 0 0 auto; padding: 0.75rem 1.1rem; font-size: 0.66rem;
+        border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
         white-space: nowrap;
-        cursor: pointer;
-        background: transparent;
       }
-      .tab-btn.active {
-        background: transparent;
-        color: var(--gold);
-        border-bottom: 2px solid var(--gold);
-      }
+      .tab-btn.active { background: transparent; color: var(--gold); border-bottom: 2px solid var(--gold); }
       .menu-section.active { grid-template-columns: 1fr; gap: 1px; padding: 0 1.5rem; margin-top: 1.5rem; }
       .menu-item { padding: 1.5rem; }
 
-      /* Gallery */
-      #gallery { padding: 4rem 0; }
+      #gallery { padding: 4.5rem 0; }
       .gallery-header { padding: 0 1.5rem; margin-bottom: 2rem; }
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 160px 120px 160px;
+        grid-template-rows: 180px 130px 200px;
       }
-      .gallery-cell:nth-child(1) { grid-column: 1; grid-row: 1; font-size: 3.5rem; }
-      .gallery-cell:nth-child(4) { grid-column: 2; grid-row: 3; font-size: 3rem; }
-      .gallery-cell { font-size: 2.5rem; min-height: 120px; }
+      .gallery-cell:nth-child(1) { grid-column: 1; grid-row: 1; }
+      .gallery-cell:nth-child(4) { grid-column: 2; grid-row: 3; }
 
-      /* Reservations */
       #reservaciones { grid-template-columns: 1fr; gap: 0; padding: 0; }
-      .reservation-info { padding: 4rem 1.5rem 2rem; }
-      .reservation-form { padding: 2rem 1.5rem; margin: 0; }
-      .form-row { grid-template-columns: 1fr; gap: 0; }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        font-size: 16px; /* prevents iOS zoom */
-        cursor: auto;
-      }
+      .reservation-info { padding: 4.5rem 1.5rem 2.5rem; }
+      .reservation-form { padding: 2rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-group input, .form-group select, .form-group textarea { font-size: 16px; cursor: auto; }
       .form-submit { cursor: pointer; }
 
-      /* Testimonios */
-      #testimonios { padding: 4rem 1.5rem; }
+      #testimonios { padding: 4.5rem 1.5rem; }
       #testimonios::before { font-size: 12rem; top: -1rem; left: 0; }
       .reviews-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      .review-card { padding: 1.8rem; }
+      .review-card { padding: 2rem; }
 
-      /* Contact */
-      #contacto { grid-template-columns: 1fr; }
-      .contact-info { padding: 4rem 1.5rem 2rem; }
-      .map-container { min-height: 280px; }
+      #contacto { grid-template-columns: 1fr; padding: 0; }
+      .contact-info { padding: 4.5rem 1.5rem 2.5rem; }
+      .map-container { min-height: 320px; }
 
-      /* Footer */
-      footer {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 3rem 1.5rem;
-      }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-        padding: 1.5rem;
-      }
+      footer { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
     }
 
-    /* ── VERY SMALL (≤ 380px) ── */
     @media (max-width: 380px) {
-      .hero-title { font-size: 3rem; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
+      .hero-title { font-size: 2.8rem; }
+      .about-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -978,12 +829,12 @@
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="#reservaciones" class="nav-cta">Reservar</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menú">
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- MOBILE MENU OVERLAY -->
+  <!-- MOBILE OVERLAY -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" class="mobile-link">Nosotros</a>
     <a href="#menu" class="mobile-link">Menú</a>
@@ -997,16 +848,27 @@
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-texture"></div>
+    <div class="hero-image-bg"></div>
     <div class="hero-content">
-      <p class="hero-tag">✦ Tradición italiana desde 1987 ✦</p>
+      <p class="hero-tag">
+        <i class="fa-solid fa-star"></i>
+        Tradición italiana desde 1987
+        <i class="fa-solid fa-star"></i>
+      </p>
       <h1 class="hero-title">
         Pizzeria
         <em>Tony</em>
       </h1>
       <p class="hero-sub">Donde cada pizza es una carta de amor a Nápoles — preparada con pasión, ingredientes frescos y 37 años de oficio.</p>
       <div class="hero-actions">
-        <a href="#menu" class="btn-primary">Ver Menú</a>
-        <a href="#reservaciones" class="btn-secondary">Hacer Reservación →</a>
+        <a href="#menu" class="btn-primary">
+          <i class="fa-solid fa-utensils"></i>
+          Ver Menú
+        </a>
+        <a href="#reservaciones" class="btn-secondary">
+          Hacer Reservación
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -1018,16 +880,16 @@
   <!-- STRIP -->
   <div class="strip" aria-hidden="true">
     <div class="strip-inner">
-      <span>Masa artesanal</span><span class="strip-dot">✦</span>
-      <span>Ingredientes frescos importados de Italia</span><span class="strip-dot">✦</span>
-      <span>Horno de leña</span><span class="strip-dot">✦</span>
-      <span>37 años de tradición</span><span class="strip-dot">✦</span>
-      <span>Familia &amp; Sabor</span><span class="strip-dot">✦</span>
-      <span>Masa artesanal</span><span class="strip-dot">✦</span>
-      <span>Ingredientes frescos importados de Italia</span><span class="strip-dot">✦</span>
-      <span>Horno de leña</span><span class="strip-dot">✦</span>
-      <span>37 años de tradición</span><span class="strip-dot">✦</span>
-      <span>Familia &amp; Sabor</span><span class="strip-dot">✦</span>
+      <span>Masa artesanal</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Ingredientes frescos importados de Italia</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Horno de leña</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>37 años de tradición</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Familia &amp; Sabor</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Masa artesanal</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Ingredientes frescos importados de Italia</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Horno de leña</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>37 años de tradición</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
+      <span>Familia &amp; Sabor</span><span class="strip-dot"><i class="fa-solid fa-diamond" style="font-size:0.5rem;"></i></span>
     </div>
   </div>
 
@@ -1058,7 +920,15 @@
       </div>
     </div>
     <div class="about-visual">
-      <div class="about-img-main"></div>
+      <!-- 3:4 portrait image — swap src to your real photo -->
+      <div class="about-img-wrap">
+        <img
+          src="../images/portfolio/pizzeria-tony-1987.png"
+          alt="Pizzeria Tony — fundada en 1987"
+          width="600" height="800"
+          loading="lazy"
+        >
+      </div>
       <div class="about-badge">
         <div class="about-badge-num">1987</div>
         <div class="about-badge-text">Fundada</div>
@@ -1085,45 +955,45 @@
     <!-- PIZZAS -->
     <div class="menu-section active" id="tab-pizzas">
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Margherita Clásica</span><span class="item-price">$12.90</span></div>
+        <div class="item-top"><span class="item-name">Margherita Clásica</span><span class="item-price">12,90 €</span></div>
         <p class="item-desc">Tomate San Marzano, mozzarella fior di latte, albahaca fresca, aceite de oliva virgen extra</p>
         <span class="item-tag">Vegetariana</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Tony's Speciale</span><span class="item-price">$18.50</span></div>
+        <div class="item-top"><span class="item-name">Tony's Speciale</span><span class="item-price">18,50 €</span></div>
         <p class="item-desc">Salsa de tomate, mozzarella, prosciutto di Parma 24 meses, rúcula, parmesano en láminas</p>
-        <span class="item-tag">Firma del Chef</span>
+        <span class="item-tag tag-gold">Firma del Chef</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Diávola</span><span class="item-price">$16.00</span></div>
+        <div class="item-top"><span class="item-name">Diávola</span><span class="item-price">16,00 €</span></div>
         <p class="item-desc">Tomate, mozzarella, salame piccante, aceite de chile, pimientos asados, aceitunas negras</p>
         <span class="item-tag">Picante</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Quattro Stagioni</span><span class="item-price">$17.00</span></div>
+        <div class="item-top"><span class="item-name">Quattro Stagioni</span><span class="item-price">17,00 €</span></div>
         <p class="item-desc">Tomate, mozzarella, jamón, alcachofas, champiñones, aceitunas — cuatro estaciones en cada mordida</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Capricciosa</span><span class="item-price">$16.50</span></div>
+        <div class="item-top"><span class="item-name">Capricciosa</span><span class="item-price">16,50 €</span></div>
         <p class="item-desc">Tomate, mozzarella, jamón cocido, champiñones frescos, alcachofas, aceitunas, huevo</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Tartufo Nero</span><span class="item-price">$24.00</span></div>
+        <div class="item-top"><span class="item-name">Tartufo Nero</span><span class="item-price">24,00 €</span></div>
         <p class="item-desc">Base de crema de trufa negra, mozzarella bufalina, champiñones porcini, parmesano, aceite de trufa</p>
-        <span class="item-tag">Premium</span>
+        <span class="item-tag tag-gold">Premium</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Marinara Antica</span><span class="item-price">$11.50</span></div>
+        <div class="item-top"><span class="item-name">Marinara Antica</span><span class="item-price">11,50 €</span></div>
         <p class="item-desc">La pizza original napolitana: tomate, ajo, orégano, aceite de oliva. Sin queso, pura tradición</p>
         <span class="item-tag">Vegana</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Bufalina</span><span class="item-price">$20.00</span></div>
-        <p class="item-desc">Tomate cherry asado, mozzarella de búfala DOP, tomates frescos, albahaca, aceite de oliva siciliano</p>
-        <span class="item-tag">DOP Certificada</span>
+        <div class="item-top"><span class="item-name">Bufalina</span><span class="item-price">20,00 €</span></div>
+        <p class="item-desc">Tomate cherry asado, mozzarella de búfala DOP, tomates frescos, albahaca, aceite siciliano</p>
+        <span class="item-tag tag-gold">DOP Certificada</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Calzone Tony</span><span class="item-price">$15.90</span></div>
+        <div class="item-top"><span class="item-name">Calzone Tony</span><span class="item-price">15,90 €</span></div>
         <p class="item-desc">Pizza plegada rellena de ricotta, salame napolitano, mozzarella y huevo — horneada al momento</p>
       </div>
     </div>
@@ -1131,31 +1001,31 @@
     <!-- PASTAS -->
     <div class="menu-section" id="tab-pastas">
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Spaghetti Cacio e Pepe</span><span class="item-price">$14.00</span></div>
+        <div class="item-top"><span class="item-name">Spaghetti Cacio e Pepe</span><span class="item-price">14,00 €</span></div>
         <p class="item-desc">Spaghetti artesanal, Pecorino Romano DOP, Parmigiano Reggiano, pimienta negra molida al momento</p>
         <span class="item-tag">Vegetariana</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Pappardelle al Ragù</span><span class="item-price">$18.00</span></div>
+        <div class="item-top"><span class="item-name">Pappardelle al Ragù</span><span class="item-price">18,00 €</span></div>
         <p class="item-desc">Pappardelle fresca de huevo, ragù de res y cerdo cocido 6 horas, vino tinto, parmesano</p>
-        <span class="item-tag">Favorito de la Casa</span>
+        <span class="item-tag tag-gold">Favorito de la Casa</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Rigatoni all'Amatriciana</span><span class="item-price">$15.50</span></div>
+        <div class="item-top"><span class="item-name">Rigatoni all'Amatriciana</span><span class="item-price">15,50 €</span></div>
         <p class="item-desc">Rigatoni, guanciale curado, tomate San Marzano, Pecorino Romano, pimiento seco</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Tagliatelle al Tartufo</span><span class="item-price">$22.00</span></div>
+        <div class="item-top"><span class="item-name">Tagliatelle al Tartufo</span><span class="item-price">22,00 €</span></div>
         <p class="item-desc">Tagliatelle fresca, crema de trufa negra, champiñones mixtos, parmesano 36 meses, cebollino</p>
-        <span class="item-tag">Premium</span>
+        <span class="item-tag tag-gold">Premium</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Lasagna della Nonna</span><span class="item-price">$16.00</span></div>
+        <div class="item-top"><span class="item-name">Lasagna della Nonna</span><span class="item-price">16,00 €</span></div>
         <p class="item-desc">Lasagna horneada al estilo tradicional: bechamel, ragù boloñese, mozzarella, parmesano</p>
-        <span class="item-tag">Receta de 1987</span>
+        <span class="item-tag tag-gold">Receta de 1987</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Linguine allo Scoglio</span><span class="item-price">$21.00</span></div>
+        <div class="item-top"><span class="item-name">Linguine allo Scoglio</span><span class="item-price">21,00 €</span></div>
         <p class="item-desc">Linguine con mariscos frescos: mejillones, almejas, camarones, calamar, salsa de tomate y vino blanco</p>
       </div>
     </div>
@@ -1163,30 +1033,30 @@
     <!-- ENTRADAS -->
     <div class="menu-section" id="tab-entradas">
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Bruschetta al Pomodoro</span><span class="item-price">$7.50</span></div>
+        <div class="item-top"><span class="item-name">Bruschetta al Pomodoro</span><span class="item-price">7,50 €</span></div>
         <p class="item-desc">Pan de masa madre tostado, tomate fresco marinado, ajo, albahaca, aceite de oliva virgen extra</p>
         <span class="item-tag">Vegana</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Burrata &amp; Prosciutto</span><span class="item-price">$14.00</span></div>
+        <div class="item-top"><span class="item-name">Burrata &amp; Prosciutto</span><span class="item-price">14,00 €</span></div>
         <p class="item-desc">Burrata cremosa importada, prosciutto di Parma, higos frescos de temporada, miel de trufa</p>
-        <span class="item-tag">Temporada</span>
+        <span class="item-tag tag-gold">Temporada</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Carpaccio di Manzo</span><span class="item-price">$16.00</span></div>
+        <div class="item-top"><span class="item-name">Carpaccio di Manzo</span><span class="item-price">16,00 €</span></div>
         <p class="item-desc">Láminas de lomo de res en crudo, rúcula, parmesano, alcaparras, limón, aceite de oliva</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Antipasto della Casa</span><span class="item-price">$19.00</span></div>
+        <div class="item-top"><span class="item-name">Antipasto della Casa</span><span class="item-price">19,00 €</span></div>
         <p class="item-desc">Tabla de embutidos italianos, quesos curados, aceitunas marinadas, vegetales asados, focaccia</p>
         <span class="item-tag">Para Compartir</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Arancini al Ragù</span><span class="item-price">$9.00</span></div>
+        <div class="item-top"><span class="item-name">Arancini al Ragù</span><span class="item-price">9,00 €</span></div>
         <p class="item-desc">Croquetas de arroz rellenas de ragù boloñese y mozzarella, empanizadas y fritas — 3 piezas</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Minestrone Toscano</span><span class="item-price">$8.50</span></div>
+        <div class="item-top"><span class="item-name">Minestrone Toscano</span><span class="item-price">8,50 €</span></div>
         <p class="item-desc">Sopa de verduras de temporada, legumbres, pasta, pesto de albahaca, pan rústico</p>
         <span class="item-tag">Vegana</span>
       </div>
@@ -1195,54 +1065,54 @@
     <!-- POSTRES -->
     <div class="menu-section" id="tab-postres">
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Tiramisù della Nonna</span><span class="item-price">$8.00</span></div>
-        <p class="item-desc">Receta original de la famiglia Russo: savoiardi, mascarpone, espresso, cacao amaro — sin gluten</p>
-        <span class="item-tag">Receta Original</span>
+        <div class="item-top"><span class="item-name">Tiramisù della Nonna</span><span class="item-price">8,00 €</span></div>
+        <p class="item-desc">Receta original de la famiglia Russo: savoiardi, mascarpone, espresso, cacao amaro</p>
+        <span class="item-tag tag-gold">Receta Original</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Panna Cotta al Miele</span><span class="item-price">$7.00</span></div>
+        <div class="item-top"><span class="item-name">Panna Cotta al Miele</span><span class="item-price">7,00 €</span></div>
         <p class="item-desc">Crema suave de vainilla, miel de lavanda, coulis de frutos rojos, menta fresca</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Cannoli Siciliani</span><span class="item-price">$6.50</span></div>
+        <div class="item-top"><span class="item-name">Cannoli Siciliani</span><span class="item-price">6,50 €</span></div>
         <p class="item-desc">Cáscaras crujientes de ricotta, pistacho de Bronte, naranja confitada — 2 piezas</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Gelato Artigianale</span><span class="item-price">$5.50</span></div>
-        <p class="item-desc">2 bolas de gelato artesanal: fior di latte, pistacho, stracciatella, limone, fragola o cioccolato</p>
+        <div class="item-top"><span class="item-name">Gelato Artigianale</span><span class="item-price">5,50 €</span></div>
+        <p class="item-desc">2 bolas: fior di latte, pistacho, stracciatella, limone, fragola o cioccolato</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Torta della Nonna</span><span class="item-price">$7.50</span></div>
+        <div class="item-top"><span class="item-name">Torta della Nonna</span><span class="item-price">7,50 €</span></div>
         <p class="item-desc">Tarta de crema de piñones y limón, masa quebrada dorada, azúcar glas</p>
-        <span class="item-tag">Favorito</span>
+        <span class="item-tag tag-gold">Favorito</span>
       </div>
     </div>
 
     <!-- BEBIDAS -->
     <div class="menu-section" id="tab-bebidas">
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Vino della Casa</span><span class="item-price">$6/copa</span></div>
+        <div class="item-top"><span class="item-name">Vino della Casa</span><span class="item-price">6,00 € / copa</span></div>
         <p class="item-desc">Selección del sommelier: tinto Chianti Classico, blanco Pinot Grigio, rosado Rosato di Puglia</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Aperol Spritz</span><span class="item-price">$9.00</span></div>
+        <div class="item-top"><span class="item-name">Aperol Spritz</span><span class="item-price">9,00 €</span></div>
         <p class="item-desc">Aperol, prosecco Valdobbiadene DOCG, soda, rodaja de naranja y aceitunas — el aperitivo perfecto</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Limoncello Sfusato</span><span class="item-price">$7.50</span></div>
+        <div class="item-top"><span class="item-name">Limoncello Sfusato</span><span class="item-price">7,50 €</span></div>
         <p class="item-desc">Limoncello artesanal de Amalfi, servido helado — digestivo de la casa</p>
-        <span class="item-tag">Casa</span>
+        <span class="item-tag tag-gold">Casa</span>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Agua &amp; Refrescos</span><span class="item-price">$3.00</span></div>
-        <p class="item-desc">Agua mineral Acqua Panna, San Pellegrino, Coca-Cola, Fanta, limonada natural, jugos</p>
+        <div class="item-top"><span class="item-name">Agua &amp; Refrescos</span><span class="item-price">3,00 €</span></div>
+        <p class="item-desc">Acqua Panna, San Pellegrino, Coca-Cola, Fanta, limonada natural, jugos</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Espresso &amp; Café</span><span class="item-price">$3.50</span></div>
+        <div class="item-top"><span class="item-name">Espresso &amp; Café</span><span class="item-price">3,50 €</span></div>
         <p class="item-desc">Espresso, cappuccino, macchiato, americano — blend exclusivo de Illy Roma</p>
       </div>
       <div class="menu-item">
-        <div class="item-top"><span class="item-name">Negroni Classico</span><span class="item-price">$11.00</span></div>
+        <div class="item-top"><span class="item-name">Negroni Classico</span><span class="item-price">11,00 €</span></div>
         <p class="item-desc">Gin Hendricks, Campari, Vermouth Rosso Martini, piel de naranja flameada</p>
       </div>
     </div>
@@ -1255,12 +1125,54 @@
       <h2 class="section-title">Una experiencia<br>que entra por los ojos</h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-cell">🍕<div class="gallery-label">Horno de leña</div></div>
-      <div class="gallery-cell">🫒<div class="gallery-label">Ingredientes frescos</div></div>
-      <div class="gallery-cell">🍷<div class="gallery-label">Carta de vinos</div></div>
-      <div class="gallery-cell">🕯️<div class="gallery-label">Terraza nocturna</div></div>
-      <div class="gallery-cell">👨‍🍳<div class="gallery-label">El maestro pizzaiolo</div></div>
-      <div class="gallery-cell">🧀<div class="gallery-label">Quesos importados</div></div>
+      <!-- Cell 1 — spans 2 rows, large portrait -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-horno-leña.png"
+             alt="Horno de leña de Pizzeria Tony"
+             width="600" height="560" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-fire"></i> Horno de leña</div>
+      </div>
+      <!-- Cell 2 -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-aceite.png"
+             alt="Ingredientes frescos"
+             width="300" height="340" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-seedling"></i> Ingredientes frescos</div>
+      </div>
+      <!-- Cell 3 -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-bodega.png"
+             alt="Bodega de vinos"
+             width="300" height="340" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-wine-bottle"></i> Carta de vinos</div>
+      </div>
+      <!-- Cell 4 — spans 2 rows, large portrait -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-terraza.png"
+             alt="Terraza nocturna"
+             width="600" height="560" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-moon"></i> Terraza nocturna</div>
+      </div>
+      <!-- Cell 5 -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-chef.png"
+             alt="El maestro pizzaiolo"
+             width="300" height="220" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-hat-chef"></i> El maestro pizzaiolo</div>
+      </div>
+      <!-- Cell 6 -->
+      <div class="gallery-cell">
+        <img src="../images/portfolio/pizzeria-tony-quesos.png"
+             alt="Quesos importados"
+             width="300" height="220" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-label"><i class="fa-solid fa-cheese"></i> Quesos importados</div>
+      </div>
     </div>
   </section>
 
@@ -1271,23 +1183,23 @@
       <h2 class="section-title">Reserva tu<br>mesa</h2>
 
       <div class="info-block">
-        <p class="info-label">Horario</p>
+        <p class="info-label"><i class="fa-regular fa-clock"></i> Horario</p>
         <p class="info-value">
-          <strong>Lun – Vie:</strong> 12:00 pm – 11:00 pm<br>
-          <strong>Sáb – Dom:</strong> 11:00 am – 12:00 am
+          <strong>Lun – Vie:</strong> 12:00 – 23:00<br>
+          <strong>Sáb – Dom:</strong> 11:00 – 00:00
         </p>
       </div>
       <div class="info-block">
-        <p class="info-label">Dirección</p>
+        <p class="info-label"><i class="fa-solid fa-location-dot"></i> Dirección</p>
         <p class="info-value">Calle della Repubblica 47<br>Centro Histórico, Madrid</p>
       </div>
       <div class="info-block">
-        <p class="info-label">Teléfono</p>
+        <p class="info-label"><i class="fa-solid fa-phone"></i> Teléfono</p>
         <p class="info-value"><strong>+34 91 234 56 78</strong></p>
       </div>
       <div class="info-block">
-        <p class="info-label">Política de reserva</p>
-        <p class="info-value">Mantenemos su mesa por 15 minutos. Para grupos de 8+ personas, se requiere anticipo.</p>
+        <p class="info-label"><i class="fa-solid fa-circle-info"></i> Política de reserva</p>
+        <p class="info-value">Mantenemos su mesa por 15 minutos. Para grupos de 8 o más personas, se requiere un anticipo.</p>
       </div>
     </div>
 
@@ -1297,11 +1209,11 @@
         <div class="form-row">
           <div class="form-group">
             <label>Nombre</label>
-            <input type="text" placeholder="Mario Rossi" required>
+            <input type="text" placeholder="Mario" required>
           </div>
           <div class="form-group">
             <label>Apellido</label>
-            <input type="text" placeholder="García" required>
+            <input type="text" placeholder="Rossi" required>
           </div>
         </div>
         <div class="form-row">
@@ -1322,7 +1234,7 @@
           <div class="form-group">
             <label>Hora</label>
             <select required>
-              <option value="">Seleccionar</option>
+              <option value="">Seleccionar hora</option>
               <option>12:00</option><option>12:30</option>
               <option>13:00</option><option>13:30</option>
               <option>14:00</option><option>19:00</option>
@@ -1346,7 +1258,10 @@
           <label>Ocasión especial / Notas</label>
           <textarea placeholder="Cumpleaños, aniversario, alergias, peticiones especiales…"></textarea>
         </div>
-        <button type="submit" class="form-submit">Confirmar Reservación</button>
+        <button type="submit" class="form-submit">
+          <i class="fa-solid fa-check"></i>
+          Confirmar Reservación
+        </button>
       </form>
     </div>
   </section>
@@ -1359,19 +1274,40 @@
     </div>
     <div class="reviews-grid">
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
         <p class="review-text">La mejor pizza que he comido fuera de Nápoles, y lo digo sin exagerar. La masa es perfecta, crujiente por fuera y suave por dentro. El tiramisù es simplemente sublime.</p>
-        <p class="review-author">— Elena M. · Google Reviews</p>
+        <p class="review-author">
+          <i class="fa-brands fa-google review-source-icon"></i>
+          Elena M. · Google Reviews
+        </p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
         <p class="review-text">Llevamos 10 años viniendo a Pizzeria Tony para celebrar nuestro aniversario. El ambiente, la atención y los sabores nunca decepcionan. Es un lugar especial de verdad.</p>
-        <p class="review-author">— Roberto &amp; Ana G. · TripAdvisor</p>
+        <p class="review-author">
+          <i class="fa-brands fa-tripadvisor review-source-icon"></i>
+          Roberto &amp; Ana G. · TripAdvisor
+        </p>
       </div>
       <div class="review-card">
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
         <p class="review-text">La Tartufo Nero es de otro mundo. El prosciutto importado se nota de lejos. Vinimos por la fama y nos quedamos por la pasión que pone el equipo en cada plato.</p>
-        <p class="review-author">— Carlos Ibáñez · Instagram</p>
+        <p class="review-author">
+          <i class="fa-brands fa-instagram review-source-icon"></i>
+          Carlos Ibáñez · Instagram
+        </p>
       </div>
     </div>
   </section>
@@ -1380,31 +1316,31 @@
   <section id="contacto" style="padding:0;">
     <div class="contact-info">
       <p class="section-label">Encuéntranos</p>
-      <h2 class="section-title" style="margin-bottom:3rem;">Contacto</h2>
+      <h2 class="section-title">Contacto</h2>
 
       <div class="contact-item">
-        <span class="contact-icon">📍</span>
+        <div class="contact-icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
         <div>
           <p class="contact-label">Dirección</p>
           <p class="contact-value">Calle della Repubblica 47<br>Centro Histórico, 28001 Madrid</p>
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-icon">📞</span>
+        <div class="contact-icon-wrap"><i class="fa-solid fa-phone"></i></div>
         <div>
           <p class="contact-label">Teléfono / WhatsApp</p>
           <p class="contact-value">+34 91 234 56 78</p>
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-icon">✉️</span>
+        <div class="contact-icon-wrap"><i class="fa-solid fa-envelope"></i></div>
         <div>
           <p class="contact-label">Email</p>
           <p class="contact-value">hola@pizzeriatony.es</p>
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-icon">🚗</span>
+        <div class="contact-icon-wrap"><i class="fa-solid fa-train-subway"></i></div>
         <div>
           <p class="contact-label">Cómo llegar</p>
           <p class="contact-value">Metro: Sol (L1, L2, L3)<br>Parking: Plaza Mayor (5 min a pie)</p>
@@ -1412,20 +1348,38 @@
       </div>
 
       <div class="contact-social">
-        <a href="#" class="social-link" aria-label="Instagram">📸</a>
-        <a href="#" class="social-link" aria-label="Facebook">📘</a>
-        <a href="#" class="social-link" aria-label="TikTok">🎵</a>
-        <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+        <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-link" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
     </div>
+
+    <!-- Map — styled OpenStreetMap embed centered on Madrid -->
     <div class="map-container">
-      <div class="map-grid"></div>
-      <div class="map-pin">📍</div>
-      <div class="map-placeholder">
-        <span class="map-emoji">🗺️</span>
-        <p>Nos encontramos en</p>
-        <strong>Calle della Repubblica 47, Madrid</strong>
-      </div>
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-3.710,-3.690,40.410,40.425&layer=mapnik&marker=40.4168,-3.7038"
+        title="Ubicación Pizzeria Tony — Madrid"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      ></iframe>
+      <div class="map-overlay"></div>
+      <!-- Fallback shown when iframe fails -->
+      <noscript>
+        <div class="map-fallback">
+          <div class="map-grid-lines"></div>
+          <div class="map-pin-wrap">
+            <i class="fa-solid fa-location-dot map-pin-icon"></i>
+            <div class="map-pin-label">
+              <p>Nos encontramos en</p>
+              <strong>Calle della Repubblica 47, Madrid</strong>
+              <a href="https://maps.google.com/?q=Puerta+del+Sol,+Madrid" target="_blank" rel="noopener">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir en Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </noscript>
     </div>
   </section>
 
@@ -1434,78 +1388,88 @@
     <div class="footer-brand">
       <a href="#" class="nav-logo">Pizza<span>Tony</span></a>
       <p>Tradición italiana desde 1987. Una pizzería familiar donde cada masa cuenta una historia y cada mordida lleva a Nápoles.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
     </div>
     <div class="footer-col">
       <h4>Explorar</h4>
       <ul>
-        <li><a href="#about">Nuestra Historia</a></li>
-        <li><a href="#menu">El Menú</a></li>
-        <li><a href="#gallery">Ambiente</a></li>
-        <li><a href="#testimonios">Reseñas</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> Nuestra Historia</a></li>
+        <li><a href="#menu"><i class="fa-solid fa-chevron-right"></i> El Menú</a></li>
+        <li><a href="#gallery"><i class="fa-solid fa-chevron-right"></i> Ambiente</a></li>
+        <li><a href="#testimonios"><i class="fa-solid fa-chevron-right"></i> Reseñas</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Servicios</h4>
       <ul>
-        <li><a href="#reservaciones">Reservaciones</a></li>
-        <li><a href="#">Eventos Privados</a></li>
-        <li><a href="#">Domicilio</a></li>
-        <li><a href="#">Catering</a></li>
+        <li><a href="#reservaciones"><i class="fa-solid fa-chevron-right"></i> Reservaciones</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Eventos Privados</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Domicilio</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Catering</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Horario</h4>
       <ul>
-        <li><a href="#">Lun – Vie: 12–23h</a></li>
-        <li><a href="#">Sáb – Dom: 11–24h</a></li>
-        <li><a href="#">+34 91 234 56 78</a></li>
-        <li><a href="#">hola@pizzeriatony.es</a></li>
+        <li><a href="#"><i class="fa-regular fa-clock"></i> Lun – Vie: 12:00 – 23:00</a></li>
+        <li><a href="#"><i class="fa-regular fa-clock"></i> Sáb – Dom: 11:00 – 00:00</a></li>
+        <li><a href="tel:+34912345678"><i class="fa-solid fa-phone"></i> +34 91 234 56 78</a></li>
+        <li><a href="mailto:hola@pizzeriatony.es"><i class="fa-solid fa-envelope"></i> hola@pizzeriatony.es</a></li>
       </ul>
     </div>
   </footer>
   <div class="footer-bottom">
     <p>© 2024 Pizzeria Tony. Todos los derechos reservados.</p>
-    <p>Diseñado con ❤️ para los amantes de la buena pizza</p>
+    <p>Diseñado con <i class="fa-solid fa-heart" style="color:var(--red);margin:0 2px;"></i> para los amantes de la buena pizza</p>
   </div>
 
   <script>
-    // Detect touch/mobile — disable custom cursor on touch devices
+    // ── Custom cursor ──
     const isTouchDevice = () => window.matchMedia('(hover: none)').matches;
-
     const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
+    const ring   = document.getElementById('cursorRing');
 
     if (!isTouchDevice()) {
       document.addEventListener('mousemove', e => {
         cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
+        cursor.style.top  = e.clientY + 'px';
         setTimeout(() => {
           ring.style.left = e.clientX + 'px';
-          ring.style.top = e.clientY + 'px';
+          ring.style.top  = e.clientY + 'px';
         }, 80);
+      });
+      // Grow cursor on interactive elements
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
       });
     } else {
       cursor.style.display = 'none';
-      ring.style.display = 'none';
+      ring.style.display   = 'none';
       document.body.style.cursor = 'auto';
     }
 
-    // Nav scroll
+    // ── Nav scroll behaviour ──
+    const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
+    // ── Hamburger / mobile menu ──
+    const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
 
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
     });
 
-    // Close mobile menu when a link is clicked
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('open');
@@ -1514,7 +1478,7 @@
       });
     });
 
-    // Menu tabs
+    // ── Menu tabs ──
     function showTab(name, btn) {
       document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1522,24 +1486,35 @@
       btn.classList.add('active');
     }
 
-    // Form
+    // ── Reservation form ──
     function handleReservation(e) {
       e.preventDefault();
       const btn = e.target.querySelector('.form-submit');
-      btn.textContent = '✓ Reservación Enviada';
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Reservación Confirmada';
       btn.style.background = '#27ae60';
+      btn.disabled = true;
       setTimeout(() => {
-        btn.textContent = 'Confirmar Reservación';
+        btn.innerHTML = orig;
         btn.style.background = '';
+        btn.disabled = false;
         e.target.reset();
-      }, 3500);
+      }, 4000);
     }
 
-    // Set min date for reservation
+    // Set today as minimum reservation date
     const dateInput = document.querySelector('input[type="date"]');
     if (dateInput) {
-      const today = new Date().toISOString().split('T')[0];
-      dateInput.min = today;
+      dateInput.min = new Date().toISOString().split('T')[0];
+    }
+
+    // ── Map iframe fallback ──
+    // If the embed is blocked, show the fallback overlay
+    const iframe = document.querySelector('.map-container iframe');
+    if (iframe) {
+      iframe.addEventListener('error', () => {
+        iframe.style.display = 'none';
+      });
     }
   </script>
 </body>
