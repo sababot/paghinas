@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fontanería RápidaFix — Expertos en Plomería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" href="../images/portfolio/fontaneria-rapidafix-logo.png">
+
+<style>
+  :root {
+    --bg: #f0f4ff;
+    --navy: #0a1628;
+    --blue: #1e5aff;
+    --sky: #4fa3f7;
+    --accent: #ff6b35;
+    --mint: #00d4aa;
+    --light: #e8eeff;
+    --text: #2c3e5a;
+    --muted: #6b7fa3;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ═══ NAV ═══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(240,244,255,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(30,90,255,0.08);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem;
+    color: var(--navy); text-decoration: none; flex-shrink: 0;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    border-radius: 9px; display: grid; place-items: center;
+    color: #fff; font-size: 0.9rem;
+    box-shadow: 0 4px 14px rgba(30,90,255,0.3); flex-shrink: 0;
+  }
+  .logo-text span { color: var(--blue); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul a {
+    font-size: 0.88rem; font-weight: 500; color: var(--text);
+    text-decoration: none; transition: color 0.2s; position: relative;
+  }
+  nav ul a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 2px; background: var(--blue); border-radius: 2px;
+    transform: scaleX(0); transition: transform 0.25s;
+  }
+  nav ul a:hover { color: var(--blue); }
+  nav ul a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--navy) !important; color: #fff !important;
+    padding: 0.55rem 1.3rem !important; border-radius: 50px;
+    transition: background 0.2s, transform 0.2s !important; white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--blue) !important; transform: translateY(-1px) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px; border: none; background: none; z-index: 300;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--navy);
+    border-radius: 2px; transition: transform 0.3s, opacity 0.3s; display: block;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile fullscreen menu */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 150;
+    background: rgba(240,244,255,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700;
+    color: var(--navy); text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--blue); }
+  .mobile-menu .mob-cta {
+    background: var(--blue); color: #fff !important;
+    padding: 0.9rem 2.5rem; border-radius: 50px; font-size: 1.1rem !important;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 6px 24px rgba(30,90,255,0.35); margin-top: 0.5rem;
+  }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 7rem 5% 4rem; position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(79,163,247,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,212,170,0.08) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; max-width: 540px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(30,90,255,0.08); border: 1px solid rgba(30,90,255,0.18);
+    color: var(--blue); font-size: 0.73rem; font-weight: 600; letter-spacing: 0.1em;
+    padding: 0.35rem 0.9rem; border-radius: 50px;
+    text-transform: uppercase; margin-bottom: 1.4rem;
+  }
+  .tag-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 1.4s infinite; flex-shrink: 0; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 800; line-height: 1.05; color: var(--navy);
+    margin-bottom: 1.2rem; letter-spacing: -0.02em;
+  }
+  h1 em { font-style: normal; color: var(--blue); }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.75; color: var(--muted);
+    margin-bottom: 2rem; max-width: 420px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    padding: 0.85rem 1.8rem; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    border: none; cursor: pointer;
+    box-shadow: 0 6px 24px rgba(30,90,255,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(30,90,255,0.45); }
+  .btn-secondary {
+    color: var(--navy); font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { gap: 12px; color: var(--blue); }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+    width: 44vw; max-width: 500px; z-index: 0;
+    animation: fadeIn 1s ease 0.3s both;
+    opacity: 0.92;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%);
+    mask-image: linear-gradient(to right, transparent 0%, black 20%);
+  }
+
+  /* Dashboard card */
+  .dash-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(30,90,255,0.13), 0 0 0 1px rgba(30,90,255,0.06);
+    overflow: hidden;
+  }
+  /* Top bar */
+  .dash-top {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2f58 100%);
+    padding: 1.2rem 1.4rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dash-top-left { display: flex; align-items: center; gap: 10px; }
+  .dash-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--sky));
+    display: grid; place-items: center; color: #fff; font-size: 0.85rem;
+  }
+  .dash-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; }
+  .dash-sub { font-size: 0.68rem; color: rgba(255,255,255,0.5); margin-top: 1px; }
+  .dash-live {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.3);
+    color: var(--mint); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.25rem 0.7rem; border-radius: 50px;
+  }
+  .dash-live-dot { width: 5px; height: 5px; background: var(--mint); border-radius: 50%; animation: blink 1.4s infinite; }
+
+  /* Stats row */
+  .dash-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid rgba(30,90,255,0.07);
+  }
+  .dash-stat {
+    padding: 1rem 1.2rem; text-align: center;
+    border-right: 1px solid rgba(30,90,255,0.07);
+  }
+  .dash-stat:last-child { border-right: none; }
+  .dash-stat-num {
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+    color: var(--navy); display: block;
+  }
+  .dash-stat-lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+  /* Jobs list */
+  .dash-jobs { padding: 0.5rem 0; }
+  .dash-job {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.75rem 1.4rem;
+    border-bottom: 1px solid rgba(30,90,255,0.05);
+    transition: background 0.2s;
+  }
+  .dash-job:last-child { border-bottom: none; }
+  .dash-job:hover { background: rgba(30,90,255,0.02); }
+  .job-icon {
+    width: 38px; height: 38px; border-radius: 11px;
+    display: grid; place-items: center; flex-shrink: 0; font-size: 0.95rem;
+  }
+  .ji-blue { background: rgba(30,90,255,0.1); color: var(--blue); }
+  .ji-mint { background: rgba(0,212,170,0.1); color: var(--mint); }
+  .ji-accent { background: rgba(255,107,53,0.1); color: var(--accent); }
+  .ji-purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+  .job-info { flex: 1; min-width: 0; }
+  .job-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job-addr { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+  .job-right { text-align: right; flex-shrink: 0; }
+  .job-badge { font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; white-space: nowrap; display: inline-block; margin-bottom: 3px; }
+  .jb-green { background: rgba(0,212,170,0.12); color: var(--mint); }
+  .jb-blue  { background: rgba(30,90,255,0.1); color: var(--blue); }
+  .jb-orange{ background: rgba(255,107,53,0.1); color: var(--accent); }
+  .jb-purple{ background: rgba(139,92,246,0.1); color: #8b5cf6; }
+  .job-time { font-size: 0.64rem; color: var(--muted); }
+
+  /* Bottom CTA strip */
+  .dash-footer {
+    background: rgba(30,90,255,0.04); border-top: 1px solid rgba(30,90,255,0.07);
+    padding: 0.9rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .dash-footer span { font-size: 0.75rem; color: var(--muted); }
+  .dash-footer-btn {
+    background: var(--blue); color: #fff;
+    font-size: 0.72rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 50px;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 12px rgba(30,90,255,0.3);
+    text-decoration: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dash-footer-btn:hover { background: #0a46e0; transform: translateY(-1px); }
+
+  /* ═══ STATS ═══ */
+  .stats-bar {
+    background: var(--navy); padding: 2.2rem 5%;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; display: block; }
+  .stat-num span { color: var(--sky); }
+  .stat-label { font-size: 0.73rem; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* ═══ SERVICES ═══ */
+  .services { padding: 5.5rem 5%; }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.7rem; }
+  h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--navy); line-height: 1.15; letter-spacing: -0.02em; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; max-width: 1100px; margin: 0 auto; }
+  .service-card {
+    background: #fff; border-radius: 20px; padding: 1.8rem;
+    border: 1px solid rgba(30,90,255,0.06);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(30,90,255,0.1); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 54px; height: 54px; border-radius: 15px;
+    background: linear-gradient(135deg, rgba(30,90,255,0.1), rgba(79,163,247,0.15));
+    display: grid; place-items: center; margin-bottom: 1.2rem;
+    color: var(--blue); font-size: 1.3rem;
+  }
+  .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+  .service-card p { font-size: 0.86rem; line-height: 1.65; color: var(--muted); }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--blue); font-size: 0.83rem; font-weight: 600;
+    text-decoration: none; margin-top: 1.1rem; transition: gap 0.2s;
+  }
+  .service-link:hover { gap: 10px; }
+
+  /* ═══ WHY US ═══ */
+  .why { background: var(--navy); color: #fff; padding: 5.5rem 5%; position: relative; overflow: hidden; }
+  .why::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,90,255,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .why-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .why-text .section-tag { color: var(--sky); }
+  .why-text h2 { color: #fff; }
+  .why-text > p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.75; margin-top: 0.9rem; }
+  .why-points { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .why-point {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.1rem 1.2rem; background: rgba(255,255,255,0.05); border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.07); transition: background 0.2s;
+  }
+  .why-point:hover { background: rgba(255,255,255,0.09); }
+  .wp-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(30,90,255,0.3); display: grid; place-items: center; color: var(--sky); font-size: 1rem; flex-shrink: 0; }
+  .wp-text strong { display: block; font-weight: 600; font-size: 0.92rem; margin-bottom: 2px; }
+  .wp-text span { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+  .reviews-stack { display: flex; flex-direction: column; gap: 1rem; }
+  .review-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px; padding: 1.3rem 1.4rem; backdrop-filter: blur(8px);
+    transition: transform 0.3s;
+  }
+  .review-card:hover { transform: translateX(5px); }
+  .review-stars { color: #fbbf24; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+  .review-text { font-size: 0.83rem; color: rgba(255,255,255,0.72); line-height: 1.65; }
+  .review-author { display: flex; align-items: center; gap: 10px; margin-top: 0.9rem; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 0.72rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .av1 { background: linear-gradient(135deg, #ff6b35, #ff8f65); }
+  .av2 { background: linear-gradient(135deg, #1e5aff, #4fa3f7); }
+  .av3 { background: linear-gradient(135deg, #00d4aa, #00b894); }
+  .author-name { font-size: 0.82rem; font-weight: 600; }
+  .author-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); }
+
+  /* ═══ PROCESS ═══ */
+  .process { padding: 5.5rem 5%; background: #fff; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; position: relative; max-width: 1000px; margin-left: auto; margin-right: auto; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 35px; left: calc(12.5% + 10px); right: calc(12.5% + 10px);
+    height: 2px; background: linear-gradient(90deg, var(--blue), var(--sky), var(--mint)); z-index: 0;
+  }
+  .step { text-align: center; position: relative; z-index: 1; padding: 0 0.5rem; }
+  .step-num {
+    width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 1.3rem;
+    background: #fff; border: 3px solid var(--blue);
+    display: grid; place-items: center;
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--blue);
+    box-shadow: 0 0 0 6px rgba(30,90,255,0.07);
+    transition: background 0.3s, color 0.3s;
+  }
+  .step:hover .step-num { background: var(--blue); color: #fff; }
+  .step h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
+  .step p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* ═══ CTA ═══ */
+  .cta-section {
+    padding: 5rem 5%; text-align: center;
+    background: linear-gradient(135deg, #e8eeff 0%, #d5e8ff 100%);
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(30,90,255,0.07) 0%, transparent 70%);
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+  .cta-section h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 0.9rem; }
+  .cta-section p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; line-height: 1.7; }
+  .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-outline {
+    border: 2px solid var(--navy); color: var(--navy);
+    padding: 0.82rem 1.8rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+
+  /* ═══ FOOTER ═══ */
+  footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 3.5rem 5% 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
+  .footer-brand .logo { color: #fff; margin-bottom: 0.9rem; }
+  .footer-brand p { font-size: 0.84rem; line-height: 1.7; max-width: 280px; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: #fff; font-size: 0.88rem; margin-bottom: 1.1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-col a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.83rem; transition: color 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .footer-col a:hover { color: #fff; }
+  .footer-col a i { width: 14px; text-align: center; color: var(--sky); font-size: 0.78rem; }
+  .footer-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.25);
+    color: var(--mint); font-size: 0.73rem; font-weight: 600;
+    padding: 0.3rem 0.9rem; border-radius: 50px; margin-top: 1rem;
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.8rem; font-size: 0.77rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-bottom a:hover { color: rgba(255,255,255,0.8); }
+
+  /* ═══ ANIMATIONS ═══ */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE
+  ═══════════════════════════════════════════ */
+
+  /* Tablet landscape */
+  @media (max-width: 1100px) {
+    .hero-visual { width: 44vw; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-inner { gap: 3rem; }
+  }
+
+  /* Tablet portrait */
+  @media (max-width: 900px) {
+    .hero-visual { display: none; }
+    .hero-content { max-width: 100%; }
+    .hero-desc { max-width: 100%; }
+    .why-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    /* Nav */
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+
+    /* Hero */
+    .hero { min-height: auto; padding: 6.5rem 5% 3rem; flex-direction: column; align-items: flex-start; }
+    h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+    .hero-desc { font-size: 0.93rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-secondary { justify-content: center; width: 100%; }
+    .hero-actions .btn-secondary { padding: 0.6rem 0; }
+
+    /* Stats */
+    .stats-bar { display: grid; grid-template-columns: 1fr 1fr; padding: 1.8rem 5%; gap: 1.2rem; }
+    .stat-num { font-size: 1.7rem; }
+
+    /* Services */
+    .services { padding: 3.5rem 5%; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 1.5rem; }
+
+    /* Why */
+    .why { padding: 3.5rem 5%; }
+
+    /* Process */
+    .process { padding: 3.5rem 5%; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem 1rem; margin-top: 2.5rem; }
+    .step-num { width: 56px; height: 56px; font-size: 1.1rem; margin-bottom: 1rem; }
+
+    /* CTA */
+    .cta-section { padding: 3.5rem 5%; }
+    .cta-buttons { flex-direction: column; align-items: stretch; }
+    .cta-buttons a { justify-content: center; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-brand { grid-column: auto; }
+    .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
+    .footer-bottom-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+    /* Section headers */
+    h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+  }
+
+  /* Small phones */
+  @media (max-width: 400px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .logo-text { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-wrench"></i></div>
+    <span class="logo-text">Fontanería <span>RápidaFix</span></span>
+  </a>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto" class="nav-cta">Llamar Ahora</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+  <a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a>
+  <a href="#proceso" onclick="closeMobileMenu()">Proceso</a>
+  <a href="#contacto" class="mob-cta" onclick="closeMobileMenu()">
+    <i class="fa-solid fa-phone"></i> Llamar Ahora
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="tag">
+      <span class="tag-dot"></span>
+      Servicio Urgente 24/7
+    </div>
+    <h1>Soluciona Tu <em>Fuga</em> Hoy Mismo.</h1>
+    <p class="hero-desc">Fontaneros certificados con respuesta en menos de 60 minutos. Presupuesto gratis y sin compromiso. Tu hogar en manos expertas.</p>
+    <div class="hero-actions">
+      <a href="tel:+34900000000" class="btn-primary">
+        <i class="fa-solid fa-phone"></i> Llamar Ahora
+      </a>
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero Visual (desktop only) -->
+  <div class="hero-visual">
+    <div class="dash-card">
+
+      <!-- Top bar -->
+      <div class="dash-top">
+        <div class="dash-top-left">
+          <div class="dash-avatar"><i class="fa-solid fa-wrench"></i></div>
+          <div>
+            <div class="dash-title">Panel de Trabajos</div>
+            <div class="dash-sub">Madrid y alrededores</div>
+          </div>
+        </div>
+        <div class="dash-live">
+          <span class="dash-live-dot"></span> En vivo
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <span class="dash-stat-num">8</span>
+          <span class="dash-stat-lbl">Hoy activos</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat-num" style="color:var(--mint)">4.9<span style="font-size:0.8rem">★</span></span>
+          <span class="dash-stat-lbl">Valoración</span>
+        </div>
+        <div class="dash-stat">
+          <span class="dash-stat-num" style="color:var(--accent)">42<span style="font-size:0.75rem;font-weight:500">min</span></span>
+          <span class="dash-stat-lbl">Resp. media</span>
+        </div>
+      </div>
+
+      <!-- Jobs list -->
+      <div class="dash-jobs">
+        <div class="dash-job" style="animation: slideIn 0.4s ease 0.1s both; opacity:0">
+          <div class="job-icon ji-blue"><i class="fa-solid fa-droplet-slash"></i></div>
+          <div class="job-info">
+            <div class="job-name">Fuga en tubería principal</div>
+            <div class="job-addr"><i class="fa-solid fa-location-dot" style="font-size:0.6rem;margin-right:3px"></i>Calle Alcalá, 45</div>
+          </div>
+          <div class="job-right">
+            <span class="job-badge jb-green">En camino</span>
+            <div class="job-time">hace 12 min</div>
+          </div>
+        </div>
+        <div class="dash-job" style="animation: slideIn 0.4s ease 0.2s both; opacity:0">
+          <div class="job-icon ji-mint"><i class="fa-solid fa-toilet"></i></div>
+          <div class="job-info">
+            <div class="job-name">Desatasco baño comunitario</div>
+            <div class="job-addr"><i class="fa-solid fa-location-dot" style="font-size:0.6rem;margin-right:3px"></i>Av. Castellana, 112</div>
+          </div>
+          <div class="job-right">
+            <span class="job-badge jb-blue">En proceso</span>
+            <div class="job-time">hace 35 min</div>
+          </div>
+        </div>
+        <div class="dash-job" style="animation: slideIn 0.4s ease 0.3s both; opacity:0">
+          <div class="job-icon ji-accent"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <div class="job-info">
+            <div class="job-name">Revisión caldera anual</div>
+            <div class="job-addr"><i class="fa-solid fa-location-dot" style="font-size:0.6rem;margin-right:3px"></i>C. Serrano, 28</div>
+          </div>
+          <div class="job-right">
+            <span class="job-badge jb-orange">Pendiente</span>
+            <div class="job-time">15:30 h</div>
+          </div>
+        </div>
+        <div class="dash-job" style="animation: slideIn 0.4s ease 0.4s both; opacity:0">
+          <div class="job-icon ji-purple"><i class="fa-solid fa-bath"></i></div>
+          <div class="job-info">
+            <div class="job-name">Instalación ducha nueva</div>
+            <div class="job-addr"><i class="fa-solid fa-location-dot" style="font-size:0.6rem;margin-right:3px"></i>C. Gran Vía, 7</div>
+          </div>
+          <div class="job-right">
+            <span class="job-badge" style="background:rgba(0,212,170,0.12);color:var(--mint)">Completado</span>
+            <div class="job-time">hoy, 11:00 h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer strip -->
+      <div class="dash-footer">
+        <span><i class="fa-solid fa-circle-check" style="color:var(--mint);margin-right:5px"></i>Sistema operativo 24/7</span>
+        <a href="tel:+34900000000" class="dash-footer-btn">
+          <i class="fa-solid fa-phone"></i> Llamar
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num">15<span>+</span></span>
+    <div class="stat-label">Años de Experiencia</div>
+  </div>
+  <div class="stat">
+    <span class="stat-num">12<span>k</span></span>
+    <div class="stat-label">Clientes Satisfechos</div>
+  </div>
+  <div class="stat">
+    <span class="stat-num">60<span>min</span></span>
+    <div class="stat-label">Tiempo de Respuesta</div>
+  </div>
+  <div class="stat">
+    <span class="stat-num">4.9<span>★</span></span>
+    <div class="stat-label">Valoración Media</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="section-header">
+    <div class="section-tag">Nuestros Servicios</div>
+    <h2>Todo lo que Necesitas,<br>Bajo un Solo Techo</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-droplet-slash"></i></div>
+      <h3>Reparaciones de Emergencia</h3>
+      <p>Fugas, tuberías rotas, pérdidas de agua. Actuamos de inmediato para minimizar daños en tu hogar.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-toilet"></i></div>
+      <h3>Desatascos Profesionales</h3>
+      <p>Cámaras de inspección, presión de agua y productos especializados para cualquier obstrucción.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+      <h3>Calentadores y Calderas</h3>
+      <p>Instalación, mantenimiento y reparación de calentadores, calderas y sistemas de ACS.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-bath"></i></div>
+      <h3>Instalación de Baños</h3>
+      <p>Reformas completas o parciales. Inodoros, lavabos, duchas, bañeras — todo con acabados perfectos.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+      <h3>Instalaciones Nuevas</h3>
+      <p>Proyectos de obra nueva o reforma integral. Trazado de tuberías, saneamiento y red de agua.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-toolbox"></i></div>
+      <h3>Mantenimiento Preventivo</h3>
+      <p>Inspecciones periódicas para detectar problemas antes de que se conviertan en averías costosas.</p>
+      <a href="#contacto" class="service-link">Solicitar <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="nosotros">
+  <div class="why-inner">
+    <div class="why-text">
+      <div class="section-tag">¿Por Qué Elegirnos?</div>
+      <h2>Expertos de Confianza, Siempre a Tu Lado</h2>
+      <p>Llevamos más de 15 años resolviendo emergencias y proyectos de fontanería con la máxima profesionalidad y honestidad.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="wp-icon"><i class="fa-solid fa-gauge-high"></i></div>
+          <div class="wp-text">
+            <strong>Respuesta en 60 Minutos</strong>
+            <span>Garantizamos llegada en menos de una hora para urgencias</span>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="wp-icon"><i class="fa-solid fa-file-invoice"></i></div>
+          <div class="wp-text">
+            <strong>Presupuesto Gratis y Transparente</strong>
+            <span>Sin letras pequeñas, sin sorpresas en la factura final</span>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="wp-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="wp-text">
+            <strong>Garantía de 2 Años</strong>
+            <span>Todos nuestros trabajos incluyen garantía total por escrito</span>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="wp-icon"><i class="fa-solid fa-moon"></i></div>
+          <div class="wp-text">
+            <strong>24/7 Disponibles</strong>
+            <span>Noches, fines de semana y festivos — siempre operativos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="reviews-stack">
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="review-text">"Vinieron en 40 minutos y solucionaron la fuga en media hora. Precio justo y muy limpios. ¡Totalmente recomendables!"</div>
+          <div class="review-author">
+            <div class="avatar av1">MG</div>
+            <div><div class="author-name">María García</div><div class="author-sub">Madrid</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="review-text">"El mejor servicio de fontanería que he tenido. Detectaron un problema que otros no vieron. Muy profesionales."</div>
+          <div class="review-author">
+            <div class="avatar av2">CL</div>
+            <div><div class="author-name">Carlos López</div><div class="author-sub">Barcelona</div></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <div class="review-text">"Reforma completa del baño con acabado impecable. Presupuesto exactamente como acordado. ¡10 de 10!"</div>
+          <div class="review-author">
+            <div class="avatar av3">AM</div>
+            <div><div class="author-name">Ana Martínez</div><div class="author-sub">Valencia</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proceso">
+  <div class="section-header">
+    <div class="section-tag">Así Trabajamos</div>
+    <h2>Simple, Rápido, Eficaz</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Llámanos</h3>
+      <p>Contacta por teléfono o WhatsApp y cuéntanos tu problema en minutos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Diagnóstico</h3>
+      <p>Nuestro técnico evalúa la avería y te da un presupuesto claro y gratuito.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Reparación</h3>
+      <p>Trabajamos de forma rápida y limpia, respetando tu hogar en todo momento.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Garantía</h3>
+      <p>Entregamos el trabajo con garantía escrita de 2 años. Tu satisfacción, asegurada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <div class="tag" style="margin-bottom:1.4rem">
+      <span class="tag-dot"></span>
+      Disponibles Ahora Mismo
+    </div>
+    <h2>¿Tienes una Avería? <em style="color:var(--blue)">Te Ayudamos.</em></h2>
+    <p>No dejes que un problema pequeño se convierta en uno grande. Llámanos ahora o escríbenos y te atendemos de inmediato.</p>
+    <div class="cta-buttons">
+      <a href="tel:+34900000000" class="btn-primary">
+        <i class="fa-solid fa-phone"></i> 900 000 000
+      </a>
+      <a href="https://wa.me/34900000000" class="btn-outline">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" style="color:#fff">
+        <div class="logo-icon"><i class="fa-solid fa-wrench"></i></div>
+        <span class="logo-text">Fontanería <span style="color:var(--sky)">RápidaFix</span></span>
+      </a>
+      <p style="margin-top:0.9rem">Tu empresa de fontanería de confianza. Soluciones rápidas y profesionales para todo tipo de instalaciones y reparaciones.</p>
+      <div class="footer-badge">
+        <i class="fa-solid fa-circle" style="font-size:0.5rem"></i>
+        Servicio activo 24/7
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Reparaciones Urgentes</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Desatascos</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Calentadores</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Instalación de Baños</a></li>
+        <li><a href="#"><i class="fa-solid fa-chevron-right"></i>Mantenimiento</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34900000000"><i class="fa-solid fa-phone"></i>900 000 000</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#d3babdb5bc93a1b2a3bab7b2b5baabfdb6a0"><i class="fa-solid fa-envelope"></i><span class="__cf_email__" data-cfemail="2a43444c456a584b5a434e4b4c4352044f59">[email&#160;protected]</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-location-dot"></i>Madrid y alrededores</a></li>
+        <li><a href="#"><i class="fa-regular fa-clock"></i>Lunes a Domingo, 24h</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Fontanería RápidaFix. Todos los derechos reservados.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacidad</a>
+      <a href="#">Aviso Legal</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>

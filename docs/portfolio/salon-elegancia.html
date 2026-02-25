@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../images/portfolio/salon-elegancia-logo.png">
+
 <style>
 
 /* ── VARIABLES ── */
@@ -38,6 +40,63 @@ img { display: block; max-width: 100%; }
 button, input, select, textarea { font-family: inherit; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ── GLOBAL IMAGE RULES ──
+   All images within positioned containers fill their space fully.
+   The gradient backgrounds behind them act as fallbacks/tints.
+*/
+
+/* Hero image */
+.hero-right img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Philosophy visual image */
+.philosophy-visual-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+}
+
+/* Gallery images */
+.gallery-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Team photo images */
+.team-photo-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Make sure all gradient containers are properly positioned for imgs */
+.gallery-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.team-photo-bg {
+  position: absolute;
+  inset: 0;
+}
 
 /* ── NAV ── */
 .nav {
@@ -103,7 +162,7 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── MOBILE MENU OVERLAY ── */
 .mobile-menu {
-  display: none; /* shown only on mobile via media query */
+  display: none;
   position: fixed; inset: 0; z-index: 950;
   background: var(--dark);
   flex-direction: column; align-items: center; justify-content: center;
@@ -144,7 +203,6 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── HERO ── */
 .hero {
-  /* push content below fixed nav */
   padding-top: var(--nav-h);
   min-height: 100vh;
   display: grid;
@@ -192,16 +250,19 @@ button, input, select, textarea { font-family: inherit; }
 .hero-right {
   position: relative; overflow: hidden;
   background: linear-gradient(160deg, #c9b49a 0%, #dccfbe 45%, #b8a48e 100%);
+  /* Ensure it spans full height of the hero */
+  min-height: calc(100vh - var(--nav-h));
 }
 .hero-deco-ring {
   position: absolute; border: 1px solid rgba(196,160,90,0.25); border-radius: 50%;
   top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 1; pointer-events: none;
 }
 .hero-deco-ring:nth-child(1) { width: 68%; padding-top: 68%; margin: -34% 0 0 -34%; animation: spin 45s linear infinite; }
 .hero-deco-ring:nth-child(2) { width: 94%; padding-top: 94%; margin: -47% 0 0 -47%; animation: spin 65s linear infinite reverse; }
-.hero-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: clamp(5rem,10vw,9rem); color: rgba(26,20,16,0.1); }
+.hero-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: clamp(5rem,10vw,9rem); color: rgba(26,20,16,0.1); z-index: 1; }
 .hero-badge {
-  position: absolute; bottom: 2.5rem; left: 2.5rem;
+  position: absolute; bottom: 2.5rem; left: 2.5rem; z-index: 2;
   background: var(--off-white); padding: 1.3rem 1.7rem;
   border-top: 3px solid var(--gold);
   box-shadow: 0 20px 50px rgba(0,0,0,0.15);
@@ -293,11 +354,50 @@ button, input, select, textarea { font-family: inherit; }
 .philosophy::before { content: ''; position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 480px; height: 480px; border: 1px solid rgba(196,160,90,0.05); border-radius: 50%; pointer-events: none; }
 
 .philosophy-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,6vw,6rem); align-items: center; position: relative; }
-.philosophy-visual { aspect-ratio: 4/5; background: linear-gradient(160deg,#3d3025 0%,#1e1712 100%); position: relative; overflow: hidden; }
-.philosophy-visual-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; }
-.philosophy-visual i { font-size: 4rem; color: rgba(196,160,90,0.12); }
-.philosophy-visual p { font-family: 'Playfair Display', serif; font-size: clamp(0.85rem,1.4vw,1.05rem); font-style: italic; color: rgba(240,224,192,0.2); text-align: center; padding: 0 2rem; line-height: 1.65; }
-.philosophy-frame { position: absolute; inset: 18px; border: 1px solid rgba(196,160,90,0.1); pointer-events: none; }
+
+/* Philosophy visual: fixed aspect-ratio container with image filling it */
+.philosophy-visual {
+  aspect-ratio: 4/5;
+  background: linear-gradient(160deg,#3d3025 0%,#1e1712 100%);
+  position: relative;
+  overflow: hidden;
+}
+.philosophy-visual-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end; /* push caption to bottom */
+  justify-content: center;
+  flex-direction: column;
+}
+/* The image fills the entire visual box */
+.philosophy-visual-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+/* Caption overlaid on image */
+.philosophy-visual-inner p {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.85rem,1.4vw,1.05rem);
+  font-style: italic;
+  color: rgba(240,224,192,0.85);
+  text-align: center;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  background: linear-gradient(to top, rgba(13,11,9,0.75) 0%, transparent 100%);
+  line-height: 1.65;
+}
+/* Hide the standalone icon since image replaces it */
+.philosophy-visual-inner > i {
+  display: none;
+}
+.philosophy-frame { position: absolute; inset: 18px; border: 1px solid rgba(196,160,90,0.2); pointer-events: none; z-index: 3; }
 
 .philosophy-content { padding: 1rem 0; }
 .big-quote { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); opacity: 0.18; line-height: 0.5; margin-bottom: 1.5rem; display: block; }
@@ -325,28 +425,38 @@ button, input, select, textarea { font-family: inherit; }
 .g3{background:linear-gradient(145deg,#b8975a,#6a5535);}
 .g4{background:linear-gradient(145deg,#3d3025,#1e1410);}
 .g5{background:linear-gradient(145deg,#6b5d4a,#352a20);}
-.gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top,rgba(13,11,9,0.75) 0%,transparent 55%); opacity: 0; transition: opacity 0.45s; display: flex; align-items: flex-end; padding: 1.5rem; }
+.gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top,rgba(13,11,9,0.75) 0%,transparent 55%); opacity: 0; transition: opacity 0.45s; display: flex; align-items: flex-end; padding: 1.5rem; z-index: 2; }
 .gallery-item:hover .gallery-overlay { opacity: 1; }
 .gallery-label { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-style: italic; color: var(--cream); }
-.gallery-deco { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(2rem,5vw,3.5rem); color: rgba(255,255,255,0.06); pointer-events: none; }
+.gallery-deco { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(2rem,5vw,3.5rem); color: rgba(255,255,255,0.06); pointer-events: none; z-index: 1; }
 
 /* ── TEAM ── */
 .team-section { padding: var(--py) var(--px); }
 .team-header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 1.5rem; margin-bottom: clamp(2.5rem,4vw,4rem); }
 .team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(1rem,2vw,1.8rem); }
 .team-card {}
-.team-photo { aspect-ratio: 3/4; overflow: hidden; position: relative; margin-bottom: 1.1rem; }
-.team-photo-bg { position: absolute; inset: 0; transition: transform 0.7s var(--ease); }
+.team-photo {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.1rem;
+}
+/* team-photo-bg fills the card area */
+.team-photo-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s var(--ease);
+}
 .team-card:hover .team-photo-bg { transform: scale(1.05); }
 .tp1{background:linear-gradient(180deg,#d4c4a8,#8a7060);}
 .tp2{background:linear-gradient(180deg,#c2b09a,#6b5545);}
 .tp3{background:linear-gradient(180deg,#ddd0ba,#9a8878);}
 .tp4{background:linear-gradient(180deg,#c8ba9f,#7a6858);}
-.team-photo-overlay { position: absolute; inset: 0; background: rgba(13,11,9,0); display: flex; align-items: center; justify-content: center; transition: background 0.45s; }
+.team-photo-overlay { position: absolute; inset: 0; background: rgba(13,11,9,0); display: flex; align-items: center; justify-content: center; transition: background 0.45s; z-index: 2; }
 .team-card:hover .team-photo-overlay { background: rgba(13,11,9,0.28); }
 .team-photo-icon { font-size: 2rem; color: var(--gold-pale); opacity: 0; transform: scale(0.8); transition: opacity 0.4s, transform 0.4s; }
 .team-card:hover .team-photo-icon { opacity: 1; transform: scale(1); }
-.team-photo-label { position: absolute; bottom: 1.2rem; left: 0; right: 0; text-align: center; font-family: 'Playfair Display', serif; font-size: 0.75rem; font-style: italic; color: rgba(255,255,255,0.18); }
+.team-photo-label { position: absolute; bottom: 1.2rem; left: 0; right: 0; text-align: center; font-family: 'Playfair Display', serif; font-size: 0.75rem; font-style: italic; color: rgba(255,255,255,0.18); z-index: 2; }
 .team-name { font-family: 'Playfair Display', serif; font-size: clamp(0.95rem,1.3vw,1.15rem); color: var(--dark); margin-bottom: 0.28rem; }
 .team-role { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
 .team-socials { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
@@ -453,18 +563,23 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
 
 /* ═══════════════════ TABLET ≤ 1024px ═══════════════════ */
 @media (max-width: 1024px) {
-  /* hide desktop nav items, show hamburger */
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  /* show mobile menu */
   .mobile-menu { display: flex; }
 
-  /* hero: single column, show image as background */
+  /* hero: single column stack */
   .hero { grid-template-columns: 1fr; }
-  .hero-left { padding-left: var(--px); padding-right: var(--px); }
+  .hero-left {
+    padding-left: var(--px); padding-right: var(--px);
+    /* Add z-index so text sits above the background image */
+    position: relative; z-index: 1;
+  }
   .hero-right {
-    position: absolute; inset: 0; z-index: -1;
-    opacity: 0.15;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.18;
+    min-height: unset;
   }
   .hero-badge { display: none; }
 
@@ -604,7 +719,7 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
   <div class="hero-right">
     <div class="hero-deco-ring"></div>
     <div class="hero-deco-ring"></div>
-    <div class="hero-icon"><i class="fa-solid fa-scissors"></i></div>
+    <img src="../images/portfolio/salon-elegancia-hero.png" alt="Salón Elegancia interior">
     <div class="hero-badge">
       <div class="hero-badge-num">N°1</div>
       <div class="hero-badge-label">Salón premiado<br>Madrid 2024</div>
@@ -697,7 +812,7 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
   <div class="philosophy-inner">
     <div class="philosophy-visual reveal">
       <div class="philosophy-visual-inner">
-        <i class="fa-solid fa-scissors"></i>
+        <img src="../images/portfolio/salon-elegancia-productos.png" alt="Productos premium del salón">
         <p>"La belleza no es una tendencia,<br>es un arte que se cultiva."</p>
       </div>
       <div class="philosophy-frame"></div>
@@ -725,28 +840,33 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
   </div>
   <div class="gallery-grid">
     <div class="gallery-item reveal">
-      <div class="gallery-bg g1"></div>
-      <div class="gallery-deco"><i class="fa-solid fa-scissors"></i></div>
+      <div class="gallery-bg g1">
+        <img src="../images/portfolio/salon-elegancia-balayage-natural.png" alt="Balayage Natural">
+      </div>
       <div class="gallery-overlay"><span class="gallery-label">Balayage Natural</span></div>
     </div>
     <div class="gallery-item reveal d1">
-      <div class="gallery-bg g2"></div>
-      <div class="gallery-deco"><i class="fa-solid fa-palette"></i></div>
+      <div class="gallery-bg g2">
+        <img src="../images/portfolio/salon-elegancia-corte-moderno.png" alt="Corte Moderno">
+      </div>
       <div class="gallery-overlay"><span class="gallery-label">Corte Moderno</span></div>
     </div>
     <div class="gallery-item reveal d2">
-      <div class="gallery-bg g3"></div>
-      <div class="gallery-deco"><i class="fa-solid fa-wand-sparkles"></i></div>
+      <div class="gallery-bg g3">
+        <img src="../images/portfolio/salon-elegancia-color-platino.png" alt="Color Platino">
+      </div>
       <div class="gallery-overlay"><span class="gallery-label">Color Platino</span></div>
     </div>
     <div class="gallery-item reveal d1">
-      <div class="gallery-bg g4"></div>
-      <div class="gallery-deco"><i class="fa-solid fa-heart"></i></div>
+      <div class="gallery-bg g4">
+        <img src="../images/portfolio/salon-elegancia-peinado-novia.png" alt="Peinado de Novia">
+      </div>
       <div class="gallery-overlay"><span class="gallery-label">Peinado de Novia</span></div>
     </div>
     <div class="gallery-item reveal d2">
-      <div class="gallery-bg g5"></div>
-      <div class="gallery-deco"><i class="fa-solid fa-leaf"></i></div>
+      <div class="gallery-bg g5">
+        <img src="../images/portfolio/salon-elegancia-mechas-caramel.png" alt="Mechas Caramel">
+      </div>
       <div class="gallery-overlay"><span class="gallery-label">Mechas Caramel</span></div>
     </div>
   </div>
@@ -764,7 +884,9 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
   <div class="team-grid">
     <div class="team-card reveal">
       <div class="team-photo">
-        <div class="team-photo-bg tp1"></div>
+        <div class="team-photo-bg tp1">
+          <img src="../images/portfolio/salon-elegancia-directora-colorista.png" alt="Sofía Martínez - Directora & Colorista">
+        </div>
         <div class="team-photo-overlay"><i class="team-photo-icon fa-solid fa-scissors"></i></div>
         <div class="team-photo-label">Directora</div>
       </div>
@@ -777,7 +899,9 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
     </div>
     <div class="team-card reveal d1">
       <div class="team-photo">
-        <div class="team-photo-bg tp2"></div>
+        <div class="team-photo-bg tp2">
+          <img src="../images/portfolio/salon-elegancia-estilista-senior.png" alt="Laura Gómez - Estilista Senior">
+        </div>
         <div class="team-photo-overlay"><i class="team-photo-icon fa-solid fa-palette"></i></div>
         <div class="team-photo-label">Estilista Senior</div>
       </div>
@@ -790,7 +914,9 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
     </div>
     <div class="team-card reveal d2">
       <div class="team-photo">
-        <div class="team-photo-bg tp3"></div>
+        <div class="team-photo-bg tp3">
+          <img src="../images/portfolio/salon-elegancia-especialista-novias.png" alt="Carmen Ruiz - Especialista en Novias">
+        </div>
         <div class="team-photo-overlay"><i class="team-photo-icon fa-solid fa-wand-sparkles"></i></div>
         <div class="team-photo-label">Especialista Novias</div>
       </div>
@@ -803,7 +929,9 @@ footer { background: var(--black); padding: clamp(3rem,6vw,5rem) var(--px) 0; bo
     </div>
     <div class="team-card reveal d3">
       <div class="team-photo">
-        <div class="team-photo-bg tp4"></div>
+        <div class="team-photo-bg tp4">
+          <img src="../images/portfolio/salon-elegancia-estetica-manicura.png" alt="Marta López - Estética & Manicura">
+        </div>
         <div class="team-photo-overlay"><i class="team-photo-icon fa-solid fa-hand-sparkles"></i></div>
         <div class="team-photo-label">Estética & Manicura</div>
       </div>
@@ -1027,12 +1155,10 @@ function closeMenu() {
 hamburger.addEventListener('click', openMenu);
 menuClose.addEventListener('click', closeMenu);
 
-// close when any link is tapped
 mobileMenu.querySelectorAll('a').forEach(function(link) {
   link.addEventListener('click', closeMenu);
 });
 
-// close on Escape
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeMenu();
 });
