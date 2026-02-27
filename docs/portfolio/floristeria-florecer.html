@@ -1,0 +1,1090 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floristería Florecer — Madrid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Satisfy&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --verde-oscuro: #2d5a27;
+      --verde-medio: #4a8c3f;
+      --verde-claro: #7ab648;
+      --verde-menta: #a8d8a8;
+      --amarillo-tierra: #c8b560;
+      --naranja-calido: #c07a4a;
+      --crema: #f6f1e9;
+      --crema-oscuro: #ece5d6;
+      --tierra: #7a6040;
+      --rosa-suave: #e8b4b8;
+      --lavanda: #c3a8d1;
+      --blanco: #ffffff;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--crema);
+      color: var(--verde-oscuro);
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* ---- TICKER ---- */
+    .banner-ticker {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 32px;
+      z-index: 200;
+      background: var(--verde-oscuro);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 38s linear infinite;
+      color: var(--verde-menta);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .ticker-track span { padding: 0 1.4rem; }
+    .ticker-track .sep { opacity: 0.35; padding: 0; }
+    .ticker-track i { margin-right: 0.45rem; font-size: 0.7rem; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 32px;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(246,241,233,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1.5px solid rgba(168,216,168,0.5);
+      transition: box-shadow 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Satisfy', cursive;
+      font-size: 1.75rem;
+      color: var(--verde-oscuro);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .nav-logo i { color: var(--verde-claro); font-size: 1.1rem; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--tierra);
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--naranja-calido);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--verde-oscuro); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--verde-oscuro);
+      color: var(--crema) !important;
+      padding: 0.55rem 1.4rem !important;
+      border-radius: 50px;
+      font-size: 0.82rem !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--verde-claro) !important; transform: translateY(-1px) !important; }
+
+    /* ---- HAMBURGER ---- */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+      background: none;
+      border: none;
+      z-index: 101;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--verde-oscuro);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ---- MOBILE MENU ---- */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: calc(32px + 58px);
+      left: 0;
+      width: 100%;
+      background: rgba(246,241,233,0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--verde-menta);
+      z-index: 99;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .mobile-menu.open { max-height: 500px; padding: 0.75rem 0 1rem; }
+    .mobile-menu ul { list-style: none; padding: 0; }
+    .mobile-menu ul li a {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.85rem 1.5rem;
+      text-decoration: none;
+      color: var(--verde-oscuro);
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(168,216,168,0.25);
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-menu ul li:last-child a { border-bottom: none; }
+    .mobile-menu ul li a:hover { background: rgba(168,216,168,0.2); color: var(--verde-medio); }
+    .mobile-menu ul li a i { width: 18px; color: var(--verde-claro); font-size: 0.95rem; }
+    .mobile-menu-cta {
+      margin: 1rem 1.5rem 0.25rem;
+      display: block;
+      text-align: center;
+      padding: 0.9rem;
+      background: var(--verde-oscuro);
+      color: var(--crema) !important;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      font-size: 0.92rem !important;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: background 0.3s;
+      border-bottom: none !important;
+    }
+    .mobile-menu-cta:hover { background: var(--verde-claro) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(200,230,200,0.7) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(220,237,200,0.5) 0%, transparent 50%),
+        var(--crema);
+      padding: 11rem 1.5rem 5rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122,182,72,0.12), transparent 70%);
+      right: -130px; top: -130px;
+      animation: float 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,122,74,0.09), transparent 70%);
+      left: -90px; bottom: -60px;
+      animation: float 11s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-28px) rotate(4deg); }
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 780px;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1.1s ease forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(36px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--verde-menta);
+      color: var(--verde-oscuro);
+      padding: 0.4rem 1.3rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .hero-badge i { font-size: 0.72rem; }
+    .hero-florals {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      animation: sway 4s ease-in-out infinite;
+    }
+    .hero-florals i { font-size: 2.4rem; color: var(--verde-claro); }
+    .hero-florals i:nth-child(2) { color: var(--naranja-calido); animation-delay: 0.2s; }
+    .hero-florals i:nth-child(3) { color: var(--amarillo-tierra); }
+    @keyframes sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50%       { transform: rotate(3deg); }
+    }
+    .hero h1 {
+      font-family: 'Satisfy', cursive;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      color: var(--verde-oscuro);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--tierra);
+      margin-bottom: 2.8rem;
+      line-height: 1.7;
+    }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.9rem 2.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+    .btn i { font-size: 0.85rem; }
+    .btn-primary { background: var(--verde-oscuro); color: var(--crema); box-shadow: 4px 4px 0 var(--verde-claro); }
+    .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--verde-claro); }
+    .btn-secondary { background: transparent; color: var(--verde-oscuro); border: 2px solid var(--verde-oscuro); }
+    .btn-secondary:hover { background: var(--verde-oscuro); color: var(--crema); }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 6rem 2rem; max-width: 100%; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--naranja-calido);
+      margin-bottom: 0.9rem;
+    }
+    .section-label i { font-size: 0.65rem; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3.2rem); color: var(--verde-oscuro); margin-bottom: 1.1rem; line-height: 1.15; }
+    .section-subtitle { font-size: 1rem; color: var(--tierra); max-width: 560px; line-height: 1.85; font-weight: 300; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--verde-oscuro); color: var(--crema); position: relative; overflow: hidden; width: 100%; }
+    .about::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122,182,72,0.08), transparent 70%);
+      right: -200px; top: -200px;
+      pointer-events: none;
+    }
+    .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; width: 100%; }
+    .about .section-label { color: var(--verde-menta); }
+    .about .section-title { color: var(--crema); }
+    .about .section-subtitle { color: rgba(245,240,232,0.78); max-width: 100%; }
+    .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+    .value-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 1.4rem; transition: background 0.3s; }
+    .value-card:hover { background: rgba(255,255,255,0.1); }
+    .value-card .icon { font-size: 1.6rem; margin-bottom: 0.75rem; display: block; color: var(--verde-menta); }
+    .value-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 0.35rem; color: var(--verde-menta); }
+    .value-card p { font-size: 0.88rem; opacity: 0.75; line-height: 1.65; }
+    .about-visual { position: relative; }
+    .about-img-placeholder {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--verde-medio), var(--verde-claro));
+      border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      animation: morph 7s ease-in-out infinite;
+      box-shadow: 10px 10px 0 var(--amarillo-tierra);
+    }
+    .about-img-placeholder i { font-size: 6rem; color: rgba(255,255,255,0.7); }
+    @keyframes morph {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%; }
+      50%       { border-radius: 30% 60% 40% 70% / 60% 40% 50% 40%; }
+    }
+
+    /* ---- PRODUCTOS ---- */
+    .productos-section { padding: 6rem 2rem; }
+    .productos { max-width: 1300px; margin: 0 auto; width: 100%; }
+    .productos-header { text-align: center; margin-bottom: 4rem; }
+    .productos-header .section-subtitle { margin: 0 auto; text-align: center; }
+    .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1.8rem; }
+    .producto-card { background: white; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--verde-menta); transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); position: relative; }
+    .producto-card:hover { transform: translateY(-7px) rotate(0.5deg); box-shadow: 0 20px 45px rgba(45,90,39,0.12); border-color: var(--verde-claro); }
+    .producto-img { height: 260px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .producto-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; }
+    .producto-img i { font-size: 4.5rem; opacity: 0.65; position: relative; z-index: 0; }
+    .producto-tag { z-index: 2; }
+    .p1 { background: linear-gradient(135deg,#fce4ec,#f8bbd0); }
+    .p1 i { color: #c2185b; }
+    .p2 { background: linear-gradient(135deg,#e8f5e9,#c8e6c9); }
+    .p2 i { color: #388e3c; }
+    .p3 { background: linear-gradient(135deg,#fff8e1,#ffe0b2); }
+    .p3 i { color: #f57f17; }
+    .p4 { background: linear-gradient(135deg,#ede7f6,#d1c4e9); }
+    .p4 i { color: #6a1b9a; }
+    .p5 { background: linear-gradient(135deg,#e0f7fa,#b2ebf2); }
+    .p5 i { color: #00838f; }
+    .p6 { background: linear-gradient(135deg,#f9fbe7,#f0f4c3); }
+    .p6 i { color: #827717; }
+    .p7 { background: linear-gradient(135deg,#fce4ec,#ede7f6); }
+    .p7 i { color: #880e4f; }
+    .p8 { background: linear-gradient(135deg,#e8f5e9,#e0f7fa); }
+    .p8 i { color: #1b5e20; }
+    .producto-tag { position: absolute; top: 0.85rem; right: 0.85rem; background: var(--verde-oscuro); color: var(--crema); font-size: 0.68rem; font-weight: 700; padding: 0.28rem 0.7rem; border-radius: 20px; letter-spacing: 0.09em; text-transform: uppercase; display: flex; align-items: center; gap: 0.3rem; }
+    .producto-tag i { font-size: 0.6rem; }
+    .producto-info { padding: 1.4rem; }
+    .producto-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .producto-info p { font-size: 0.86rem; color: var(--tierra); margin-bottom: 1rem; line-height: 1.55; }
+    .producto-footer { display: flex; justify-content: space-between; align-items: center; }
+    .precio { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--verde-oscuro); }
+    .btn-agregar { background: var(--verde-oscuro); color: white; border: none; padding: 0.48rem 1.2rem; border-radius: 50px; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; transition: all 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+    .btn-agregar i { font-size: 0.75rem; }
+    .btn-agregar:hover { background: var(--verde-claro); transform: scale(1.04); }
+
+    /* ---- SERVICIOS ---- */
+    .servicios { background: linear-gradient(155deg, #eaf4ea 0%, #f6f1e9 100%); overflow: hidden; }
+    .servicios-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+    .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; margin-top: 3.5rem; }
+    .servicio-card { background: white; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; border: 1.5px solid transparent; transition: all 0.35s; position: relative; overflow: hidden; }
+    .servicio-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,rgba(122,182,72,0.05),transparent); opacity: 0; transition: opacity 0.3s; }
+    .servicio-card:hover { border-color: var(--verde-medio); transform: translateY(-5px); box-shadow: 0 12px 35px rgba(45,90,39,0.1); }
+    .servicio-card:hover::before { opacity: 1; }
+    .servicio-icon { font-size: 2.4rem; margin-bottom: 1.3rem; display: block; color: var(--verde-claro); }
+    .servicio-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--verde-oscuro); margin-bottom: 0.8rem; }
+    .servicio-card p { font-size: 0.9rem; color: var(--tierra); line-height: 1.75; }
+
+    /* ---- TESTIMONIOS ---- */
+    .testimonios { background: var(--verde-oscuro); color: var(--crema); overflow: hidden; }
+    .testimonios-inner { max-width: 1200px; margin: 0 auto; text-align: center; width: 100%; }
+    .testimonios .section-label { color: var(--verde-menta); }
+    .testimonios .section-title { color: var(--crema); }
+    .testimonios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; margin-top: 3.5rem; }
+    .testimonio-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 2rem; text-align: left; transition: background 0.3s; }
+    .testimonio-card:hover { background: rgba(255,255,255,0.1); }
+    .stars { color: var(--amarillo-tierra); font-size: 0.85rem; letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .testimonio-texto { font-size: 0.93rem; line-height: 1.85; opacity: 0.85; font-style: italic; margin-bottom: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+    .testimonio-autor { display: flex; align-items: center; gap: 0.9rem; }
+    .autor-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .autor-avatar i { font-size: 1.3rem; }
+    .av1 { background: var(--rosa-suave); color: #8b3a44; }
+    .av2 { background: var(--verde-menta); color: var(--verde-oscuro); }
+    .av3 { background: var(--lavanda); color: #6a3d80; }
+    .autor-nombre strong { display: block; font-size: 0.92rem; }
+    .autor-nombre span { font-size: 0.8rem; opacity: 0.6; }
+
+    /* ---- TALLER ---- */
+    .taller { background: linear-gradient(135deg,#f9fbe7,#e8f5e9); overflow: hidden; }
+    .taller-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; width: 100%; }
+    .taller-clases { display: grid; gap: 0.9rem; margin-top: 2rem; }
+    .clase-item { display: flex; align-items: center; gap: 1.2rem; background: white; border-radius: 14px; padding: 1.1rem 1.4rem; border: 1.5px solid var(--verde-menta); transition: all 0.3s; }
+    .clase-item:hover { border-color: var(--verde-claro); transform: translateX(6px); box-shadow: 0 6px 20px rgba(45,90,39,0.08); }
+    .clase-emoji { width: 44px; height: 44px; border-radius: 12px; background: var(--crema); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .clase-emoji i { font-size: 1.2rem; color: var(--verde-claro); }
+    .clase-info { flex: 1; }
+    .clase-info strong { display: block; font-size: 0.95rem; color: var(--verde-oscuro); }
+    .clase-info span { font-size: 0.82rem; color: var(--tierra); }
+    .clase-precio { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--verde-oscuro); flex-shrink: 0; }
+    .taller-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .taller-foto { border-radius: 20px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; }
+    .taller-foto i { font-size: 3.5rem; opacity: 0.6; color: var(--verde-oscuro); }
+    .tf1 { background: linear-gradient(135deg,#c8e6c9,#a5d6a7); grid-row: span 2; border-radius: 28px; }
+    .tf1 i { font-size: 5.5rem; }
+    .tf2 { background: linear-gradient(135deg,#ffe0b2,#ffcc80); }
+    .tf3 { background: linear-gradient(135deg,#f8bbd0,#f48fb1); }
+
+    /* ---- CONTACTO ---- */
+    .contacto { background: var(--crema); }
+    .contacto-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; width: 100%; }
+    .info-item { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.5rem; }
+    .info-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--verde-menta); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-icon i { font-size: 1rem; color: var(--verde-oscuro); }
+    .info-text strong { display: block; font-size: 0.92rem; color: var(--verde-oscuro); margin-bottom: 0.2rem; font-weight: 600; }
+    .info-text span { font-size: 0.88rem; color: var(--tierra); line-height: 1.65; display: block; }
+    .info-text a { color: var(--tierra); text-decoration: none; }
+    .info-text a:hover { color: var(--verde-oscuro); }
+    .horarios-tabla { margin-top: 2rem; background: white; border-radius: 16px; padding: 1.5rem; border: 1.5px solid var(--verde-menta); }
+    .horarios-tabla h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; margin-bottom: 1rem; color: var(--verde-oscuro); display: flex; align-items: center; gap: 0.5rem; }
+    .horarios-tabla h4 i { font-size: 0.9rem; color: var(--naranja-calido); }
+    .horario-row { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px dashed var(--verde-menta); font-size: 0.88rem; }
+    .horario-row:last-child { border-bottom: none; }
+    .horario-row span:first-child { color: var(--tierra); }
+    .horario-row span:last-child { font-weight: 600; color: var(--verde-oscuro); }
+    .formulario { background: white; border-radius: 22px; padding: 2.5rem; border: 1.5px solid var(--verde-menta); box-shadow: 0 8px 35px rgba(45,90,39,0.06); }
+    .formulario h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--verde-oscuro); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .formulario h3 i { font-size: 1rem; color: var(--verde-claro); }
+    .form-group { margin-bottom: 1.15rem; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--verde-oscuro); margin-bottom: 0.45rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid var(--crema-oscuro);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.93rem;
+      background: var(--crema);
+      color: var(--verde-oscuro);
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--verde-medio);
+      box-shadow: 0 0 0 3px rgba(74,140,63,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .btn-enviar { width: 100%; padding: 1rem; background: var(--verde-oscuro); color: var(--crema); border: none; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .btn-enviar i { font-size: 0.85rem; }
+    .btn-enviar:hover { background: var(--verde-claro); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(45,90,39,0.25); }
+
+    /* ---- FOOTER ---- */
+    footer { background: #182f14; color: rgba(245,240,232,0.75); padding: 4.5rem 2rem 2rem; overflow: hidden; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; width: 100%; }
+    .footer-brand .logo { font-family: 'Satisfy', cursive; font-size: 1.9rem; color: var(--verde-menta); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .footer-brand .logo i { font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.75; opacity: 0.7; max-width: 260px; }
+    .footer-col h4 { font-family: 'Cormorant Garamond', serif; color: var(--verde-menta); margin-bottom: 1.2rem; font-size: 1.05rem; letter-spacing: 0.04em; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.55rem; }
+    .footer-col ul li a { color: rgba(245,240,232,0.6); text-decoration: none; font-size: 0.87rem; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--verde-menta); }
+    .social-links { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+    .social-btn { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(245,240,232,0.7); font-size: 1rem; transition: all 0.3s; cursor: pointer; }
+    .social-btn:hover { background: var(--verde-medio); color: white; border-color: var(--verde-medio); transform: translateY(-2px); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; opacity: 0.55; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-bottom i { color: var(--rosa-suave); }
+
+    /* ---- REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---- TOAST ---- */
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--verde-oscuro); color: var(--crema); padding: 0.9rem 1.4rem; border-radius: 14px; font-size: 0.9rem; font-weight: 600; z-index: 1000; transform: translateY(100px); opacity: 0; transition: all 0.4s cubic-bezier(0.175,0.885,0.32,1.275); box-shadow: 0 8px 30px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 0.6rem; max-width: calc(100vw - 4rem); }
+    .toast i { color: var(--verde-menta); flex-shrink: 0; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonios-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .banner-ticker { height: 28px; }
+      .ticker-track { font-size: 0.7rem; }
+      nav { top: 28px; padding: 0.7rem 1.2rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; top: calc(28px + 52px); }
+      .hero { padding: 10rem 1.2rem 3.5rem; }
+      .hero-florals i { font-size: 1.8rem; }
+      .hero-tagline { font-size: 1.05rem; }
+      .btn { padding: 0.8rem 1.6rem; font-size: 0.88rem; }
+      section { padding: 4rem 1.2rem; }
+      .productos-section { padding: 4rem 1.2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-visual { display: none; }
+      .about-values { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .servicios-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .testimonios-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .taller-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .taller-visual { display: none; }
+      .contacto-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .productos-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .toast { bottom: 1rem; right: 1rem; left: 1rem; max-width: calc(100vw - 2rem); }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0.65rem 1rem; }
+      .nav-logo { font-size: 1.5rem; }
+      .productos-grid { grid-template-columns: 1fr; }
+      .about-values { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero h1 { font-size: clamp(2.8rem, 14vw, 3.8rem); }
+      .btn-group { flex-direction: column; align-items: stretch; }
+      .btn-group .btn { justify-content: center; }
+      .formulario { padding: 1.4rem; }
+      .servicio-card { padding: 2rem 1.5rem; }
+      .clase-item { padding: 0.9rem 1rem; }
+      .contacto-inner { gap: 1.8rem; }
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 { font-size: 2.6rem; }
+      .section-title { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TICKER BANNER -->
+  <div class="banner-ticker">
+    <div class="ticker-track">
+      <span><i class="fa-solid fa-truck-fast"></i>Envío gratuito en pedidos +€50</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-leaf"></i>Flores frescas cada mañana</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-seedling"></i>100% ecológico y sostenible</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-location-dot"></i>Productores locales de Madrid</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-wand-magic-sparkles"></i>Pedidos personalizados con amor</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-gift"></i>Envolver regalo sin coste extra</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-bicycle"></i>Entrega en bici por toda la ciudad</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-truck-fast"></i>Envío gratuito en pedidos +€50</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-leaf"></i>Flores frescas cada mañana</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-seedling"></i>100% ecológico y sostenible</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-location-dot"></i>Productores locales de Madrid</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-wand-magic-sparkles"></i>Pedidos personalizados con amor</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-gift"></i>Envolver regalo sin coste extra</span><span class="sep">&#8729;</span>
+      <span><i class="fa-solid fa-bicycle"></i>Entrega en bici por toda la ciudad</span><span class="sep">&#8729;</span>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#inicio" class="nav-logo">
+      <i class="fa-solid fa-spa"></i> Florecer
+    </a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotras</a></li>
+      <li><a href="#flores">Flores</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#testimonios">Opiniones</a></li>
+      <li><a href="#taller">Talleres</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="nav-links a nav-cta" style="text-decoration:none;font-weight:600;font-size:0.82rem;letter-spacing:0.05em;background:var(--verde-oscuro);color:var(--crema);padding:0.55rem 1.4rem;border-radius:50px;transition:all 0.3s;display:none;" id="desktopCta">
+      <i class="fa-solid fa-paper-plane" style="font-size:0.75rem;margin-right:0.35rem;"></i>Pedir ahora
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- DESKTOP CTA via CSS -->
+  <style>
+    @media (min-width: 769px) { #desktopCta { display: inline-flex !important; align-items: center; } }
+    #desktopCta:hover { background: var(--verde-claro) !important; transform: translateY(-1px); }
+  </style>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#nosotros" onclick="closeMenu()"><i class="fa-solid fa-leaf"></i>Nosotras</a></li>
+      <li><a href="#flores" onclick="closeMenu()"><i class="fa-solid fa-spa"></i>Flores</a></li>
+      <li><a href="#servicios" onclick="closeMenu()"><i class="fa-solid fa-star"></i>Servicios</a></li>
+      <li><a href="#testimonios" onclick="closeMenu()"><i class="fa-solid fa-comment-dots"></i>Opiniones</a></li>
+      <li><a href="#taller" onclick="closeMenu()"><i class="fa-solid fa-scissors"></i>Talleres</a></li>
+      <li><a href="#contacto" onclick="closeMenu()"><i class="fa-solid fa-location-dot"></i>Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="mobile-menu-cta" onclick="closeMenu()">
+      <i class="fa-solid fa-paper-plane" style="margin-right:0.4rem;"></i>Pedir ahora
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="hero-badge">
+        <i class="fa-solid fa-award"></i>
+        Floristería Artesanal · Madrid
+        <i class="fa-solid fa-award"></i>
+      </span>
+      <div class="hero-florals">
+        <i class="fa-solid fa-seedling"></i>
+        <i class="fa-solid fa-spa"></i>
+        <i class="fa-solid fa-leaf"></i>
+      </div>
+      <h1>Floristería<br>Florecer</h1>
+      <p class="hero-tagline">
+        Donde cada ramo cuenta una historia.<br>
+        Flores de temporada, amor por la naturaleza, alma bohemia.
+      </p>
+      <div class="btn-group">
+        <a href="#flores" class="btn btn-primary">
+          <i class="fa-solid fa-spa"></i> Ver nuestras flores
+        </a>
+        <a href="#taller" class="btn btn-secondary">
+          <i class="fa-solid fa-scissors"></i> Talleres florales
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="nosotros">
+    <div class="about-inner">
+      <div class="about-text reveal">
+        <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Nuestra historia</p>
+        <h2 class="section-title">Cultivamos belleza<br>con amor y raíces</h2>
+        <p class="section-subtitle">
+          Somos Luna y Sofía, dos hermanas apasionadas por las plantas, la tierra y la magia de lo natural. Fundamos Florecer en 2018 con una misión simple: traer la belleza salvaje del campo a tu vida cotidiana, respetando siempre el planeta.
+        </p>
+        <p class="section-subtitle" style="margin-top:1rem;">
+          Trabajamos únicamente con productores locales, flores de temporada y embalaje 100% compostable. Cada ramo es único, como tú.
+        </p>
+        <div class="about-values">
+          <div class="value-card">
+            <span class="icon"><i class="fa-solid fa-earth-europe"></i></span>
+            <h4>Sostenible</h4>
+            <p>Sin plásticos, sin pesticidas, solo amor por la Tierra.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon"><i class="fa-solid fa-handshake"></i></span>
+            <h4>Local</h4>
+            <p>Apoyamos a agricultores de la región de Madrid.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon"><i class="fa-solid fa-wheat-awn"></i></span>
+            <h4> Artesanal</h4>
+            <p>Cada ramo hecho a mano con intención y cariño.</p>
+          </div>
+          <div class="value-card">
+            <span class="icon"><i class="fa-solid fa-sun"></i></span>
+            <h4>Estacional</h4>
+            <p>Respetamos los ciclos naturales de cada flor.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-img-placeholder">
+          <i class="fa-solid fa-spa"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="productos-section" id="flores">
+    <div class="productos">
+      <div class="productos-header reveal">
+        <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Nuestra colección</p>
+        <h2 class="section-title">Flores para cada momento</h2>
+        <p class="section-subtitle">De la huerta a tu corazón. Todas las flores llegan frescas cada mañana desde nuestros agricultores de confianza.</p>
+      </div>
+      <div class="productos-grid">
+        <div class="producto-card reveal">
+          <div class="producto-img p1">
+            <img src="RosasSilvestres.png" alt="Ramo de Rosas Silvestre" width="500" height="600">
+            <span class="producto-tag"><i class="fa-solid fa-fire"></i> Popular</span>
+          </div>
+          <div class="producto-info"><h3>Ramo de Rosas Silvestres</h3><p>Rosas de temporada con follaje natural y hierbas aromáticas. Puro romanticismo bohemio.</p><div class="producto-footer"><span class="precio">€28</span><button class="btn-agregar" onclick="addToast('Ramo añadido al carrito', 'fa-heart')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p2">
+            <img src="VerdeSilvestre.png" alt="Ramo Verde Silvestre" width="500" height="600">
+          </div>
+          <div class="producto-info"><h3>Ramo Verde Silvestre</h3><p>Solo verdes: eucalipto, helecho, monstera y ramas de olivo. Minimalista y natural.</p><div class="producto-footer"><span class="precio">€22</span><button class="btn-agregar" onclick="addToast('Ramo añadido al carrito', 'fa-leaf')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p3">
+            <img src="Girasol.png" alt="Corona de Girasoles " width="500" height="600">
+            <span class="producto-tag"><i class="fa-solid fa-sun"></i> Verano</span>
+          </div>
+          <div class="producto-info"><h3>Corona de Girasoles</h3><p>Girasoles frescos con margaritas y lavanda. Alegría pura en cada pétalo.</p><div class="producto-footer"><span class="precio">€35</span><button class="btn-agregar" onclick="addToast('Corona añadida al carrito', 'fa-sun')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p4"><img src="Lavanda.png" alt="Ramo Lavanda" width="500" height="600"></div>
+          <div class="producto-info"><h3>Ramo Lavanda &amp; Peonías</h3><p>La combinación más soñadora. Fragancia intensa que llena toda la habitación.</p><div class="producto-footer"><span class="precio">€42</span><button class="btn-agregar" onclick="addToast('Ramo añadido al carrito', 'fa-spa')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p5">
+            <img src="Tulipanes.png" alt="Tulipanes Arco Iris" width="500" height="600">
+            <span class="producto-tag"><i class="fa-solid fa-star"></i> Nuevo</span>
+          </div>
+          <div class="producto-info"><h3>Tulipanes Arco Iris</h3><p>Mezcla de tulipanes en todos los colores de la primavera. Alegría multicolor.</p><div class="producto-footer"><span class="precio">€26</span><button class="btn-agregar" onclick="addToast('Tulipanes añadidos al carrito', 'fa-wand-magic-sparkles')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p6"><img src="Margaritas.png" alt="Margaritas del Campo" width="500" height="600"></div>
+          <div class="producto-info"><h3>Margaritas del Campo</h3><p>Sencillas, puras y llenas de vida. El ramo que hace sonreír a todo el mundo.</p><div class="producto-footer"><span class="precio">€18</span><button class="btn-agregar" onclick="addToast('Margaritas añadidas al carrito', 'fa-seedling')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p7">
+            <img src="Lila.png" alt="Ramo Lila" width="500" height="600">
+            <span class="producto-tag" style="background:var(--lavanda);color:#4a2060;"><i class="fa-solid fa-crown"></i> Exclusivo</span>
+          </div>
+          <div class="producto-info"><h3>Ramo Lila &amp; Violetas</h3><p>Flores moradas de temporada con aroma a jardín de la abuela. Nostálgico y bello.</p><div class="producto-footer"><span class="precio">€38</span><button class="btn-agregar" onclick="addToast('Ramo añadido al carrito', 'fa-gem')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+        <div class="producto-card reveal">
+          <div class="producto-img p8"><img src="Bonsai.png" alt="Planta Bonsai" width="500" height="600"></div>
+          <div class="producto-info"><h3>Planta Zen (Bonsái)</h3><p>Un bonsái de bambú para traer calma y naturaleza a tu hogar. Belleza duradera.</p><div class="producto-footer"><span class="precio">€55</span><button class="btn-agregar" onclick="addToast('Bonsái añadido al carrito', 'fa-tree')"><i class="fa-solid fa-plus"></i> Añadir</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="servicios-inner">
+      <div style="text-align:center;" class="reveal">
+        <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Lo que hacemos</p>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <p class="section-subtitle" style="margin:0 auto;text-align:center;">Desde el ramo más íntimo hasta la decoración de tu boda soñada. Estamos aquí para hacer florecer tus momentos especiales.</p>
+      </div>
+      <div class="servicios-grid">
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-infinity"></i></span>
+          <h3> Bodas &amp; Eventos</h3>
+          <p>Decoración floral completa para tu gran día. Centros de mesa, arcos, ramos de novia, boutonnières. Hacemos tus sueños realidad con flores.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-bicycle"></i></span>
+          <h3>Entrega a Domicilio</h3>
+          <p>Enviamos en bicicleta por toda Madrid. Entrega el mismo día en pedidos antes de las 12h. Sin plásticos, con amor.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-gift"></i></span>
+          <h3>Ramos Personalizados</h3>
+          <p>Cuéntanos tu historia y creamos el ramo perfecto. Para cumpleaños, aniversarios, o simplemente porque sí.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-building"></i></span>
+          <h3>Decoración de Espacios</h3>
+          <p>Transformamos tu oficina, restaurante o local con plantas y flores de temporada. Suscripción mensual disponible.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-calendar-days"></i></span>
+          <h3>Suscripción Floral</h3>
+          <p>Recibe flores frescas en casa cada semana o cada mes. Nunca te quedes sin flores. Personalizable y cancelable cuando quieras.</p>
+        </div>
+        <div class="servicio-card reveal">
+          <span class="servicio-icon"><i class="fa-solid fa-crown"></i></span>
+          <h3>Coronas &amp; Guirnaldas</h3>
+          <p>Coronas de flores para festivales, retratos fotográficos, rituales o simplemente para sentirte diosa de la naturaleza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios">
+    <div class="testimonios-inner reveal">
+      <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Lo que dicen</p>
+      <h2 class="section-title">Amor desde el corazón</h2>
+      <div class="testimonios-grid">
+        <div class="testimonio-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonio-texto">"Encargué el ramo de novia y quedé sin palabras. Luna entendió exactamente lo que quería con solo describirle mi sueño. Las flores llegaron fresquísimas y duraron dos semanas. ¡Las mejores floristas de Madrid sin duda!"</p>
+          <div class="testimonio-autor">
+            <div class="autor-avatar av1"><i class="fa-solid fa-user"></i></div>
+            <div class="autor-nombre"><strong>María Jiménez</strong><span>Novia feliz · Junio 2024</span></div>
+          </div>
+        </div>
+        <div class="testimonio-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonio-texto">"La suscripción mensual ha cambiado mi vida. Cada lunes llegan flores nuevas y frescas en papel kraft reciclado. Mi piso huele a primavera todo el año. Y Sofía siempre elige variedades que nunca había visto."</p>
+          <div class="testimonio-autor">
+            <div class="autor-avatar av2"><i class="fa-solid fa-user"></i></div>
+            <div class="autor-nombre"><strong>Pablo Ruiz</strong><span>Suscriptor anual</span></div>
+          </div>
+        </div>
+        <div class="testimonio-card">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonio-texto">"Fui al taller de coronas de flores para mi cumpleaños con mis amigas y fue la tarde más mágica del año. Luna es una profesora increíble, paciente y apasionada. Volveré seguro a más talleres. ¡Gracias Florecer!"</p>
+          <div class="testimonio-autor">
+            <div class="autor-avatar av3"><i class="fa-solid fa-user"></i></div>
+            <div class="autor-nombre"><strong>Carmen Vega</strong><span>Alumna del taller</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TALLER -->
+  <section class="taller" id="taller">
+    <div class="taller-inner">
+      <div class="reveal">
+        <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Aprende con nosotras</p>
+        <h2 class="section-title">Talleres florales<br>para el alma</h2>
+        <p class="section-subtitle">Descubre el arte de trabajar con flores en un ambiente relajado, creativo y lleno de buena energía. Para principiantes y avanzadas.</p>
+        <div class="taller-clases">
+          <div class="clase-item">
+            <div class="clase-emoji"><i class="fa-solid fa-crown"></i></div>
+            <div class="clase-info"><strong>Coronas de Flores</strong><span>Sábados · 2h · Máx. 8 personas</span></div>
+            <span class="clase-precio">€45</span>
+          </div>
+          <div class="clase-item">
+            <div class="clase-emoji"><i class="fa-solid fa-spa"></i></div>
+            <div class="clase-info"><strong>Arte del Ramo</strong><span>Miércoles · 2,5h · Máx. 6 personas</span></div>
+            <span class="clase-precio">€55</span>
+          </div>
+          <div class="clase-item">
+            <div class="clase-emoji"><i class="fa-solid fa-leaf"></i></div>
+            <div class="clase-info"><strong>Ikebana & Flores Secas</strong><span>Domingos · 3h · Máx. 8 personas</span></div>
+            <span class="clase-precio">€65</span>
+          </div>
+          <div class="clase-item">
+            <div class="clase-emoji"><i class="fa-solid fa-seedling"></i></div>
+            <div class="clase-info"><strong>Terrarios &amp; Plantas Verdes</strong><span>Jueves · 2h · Máx. 10 personas</span></div>
+            <span class="clase-precio">€40</span>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn-primary" style="margin-top:2rem;display:inline-flex;">
+          <i class="fa-solid fa-calendar-plus"></i> Reservar plaza
+        </a>
+      </div>
+      <div class="taller-visual reveal">
+        <div class="taller-foto tf1"><i class="fa-solid fa-spa"></i></div>
+        <div class="taller-foto tf2"><i class="fa-solid fa-leaf"></i></div>
+        <div class="taller-foto tf3"><i class="fa-solid fa-heart"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="contacto-inner">
+      <div class="reveal">
+        <p class="section-label"><i class="fa-solid fa-circle-dot"></i> Encuéntranos</p>
+        <h2 class="section-title">Ven a visitarnos</h2>
+        <p class="section-subtitle">Estamos en el corazón del barrio de Malasaña, rodeadas de arte y buen rollo. Pasa a tomar un té y oler las flores.</p>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="info-text"><strong>Dirección</strong><span>Calle del Pez, 14<br>28004 Madrid, Malasaña</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-text"><strong>Teléfono</strong><span>+34 910 234 567</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="info-text"><strong>Email</strong><span><a href="/cdn-cgi/l/email-protection#254d4a49446543494a574c565140574c4443494a57404640570b4056"><span class="__cf_email__" data-cfemail="d5bdbab9b495b3b9baa7bca6a1b0a7bcb4b3b9baa7b0b6b0a7fbb0a6">[email&#160;protected]</span></a></span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fa-brands fa-instagram"></i></div>
+          <div class="info-text"><strong>Instagram &amp; WhatsApp</strong><span>@floristeriaflorecer<br>Respondemos en menos de 1 hora</span></div>
+        </div>
+        <div class="horarios-tabla">
+          <h4><i class="fa-regular fa-clock"></i> Horario de apertura</h4>
+          <div class="horario-row"><span>Lunes – Viernes</span><span>9:00 – 20:00</span></div>
+          <div class="horario-row"><span>Sábado</span><span>9:00 – 21:00</span></div>
+          <div class="horario-row"><span>Domingo</span><span>10:00 – 15:00</span></div>
+          <div class="horario-row"><span>Festivos</span><span>10:00 – 14:00</span></div>
+        </div>
+      </div>
+      <div class="formulario reveal">
+        <h3><i class="fa-solid fa-spa"></i> Envíanos un mensaje</h3>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="+34 600 000 000">
+        </div>
+        <div class="form-group">
+          <label>¿En qué te podemos ayudar?</label>
+          <select>
+            <option>Pedir un ramo especial</option>
+            <option>Decoración de boda o evento</option>
+            <option>Reservar un taller</option>
+            <option>Suscripción floral</option>
+            <option>Decoración de espacios</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tu mensaje</label>
+          <textarea placeholder="Cuéntanos tu historia, qué sueñas, qué necesitas..."></textarea>
+        </div>
+        <button class="btn-enviar" onclick="addToast('Mensaje enviado. Te escribimos pronto.', 'fa-paper-plane')">
+          <i class="fa-solid fa-paper-plane"></i> Enviar mensaje
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo"><i class="fa-solid fa-spa"></i> Florecer</span>
+        <p>Floristería artesanal y sostenible en el corazón de Madrid. Hacemos florecer tus momentos más especiales desde 2018.</p>
+        <div class="social-links">
+          <a class="social-btn" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social-btn" href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a class="social-btn" href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="social-btn" href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Flores</h4>
+        <ul>
+          <li><a href="#">Ramos de temporada</a></li>
+          <li><a href="#">Plantas de interior</a></li>
+          <li><a href="#">Flores secas</a></li>
+          <li><a href="#">Coronas</a></li>
+          <li><a href="#">Bonsáis</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Bodas y eventos</a></li>
+          <li><a href="#">Entrega a domicilio</a></li>
+          <li><a href="#">Suscripción</a></li>
+          <li><a href="#">Empresas</a></li>
+          <li><a href="#">Talleres</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Nosotras</h4>
+        <ul>
+          <li><a href="#">Nuestra historia</a></li>
+          <li><a href="#">Sostenibilidad</a></li>
+          <li><a href="#">Productores</a></li>
+          <li><a href="#">Blog floral</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Floristería Florecer · Hecho con <i class="fa-solid fa-heart"></i> en Madrid</span>
+      <span>Privacidad · Términos · Cookies</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check" id="toast-icon"></i> <span id="toast-msg">Añadido al carrito</span></div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.productos-grid .reveal, .servicios-grid .reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    function addToast(msg, icon = 'fa-circle-check') {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+      toastMsg.textContent = msg;
+      toastIcon.className = 'fa-solid ' + icon;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').style.boxShadow = window.scrollY > 50
+        ? '0 4px 25px rgba(45,90,39,0.12)'
+        : 'none';
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      btn.classList.toggle('open');
+    }
+
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.getElementById('hamburger');
+      if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>
+
